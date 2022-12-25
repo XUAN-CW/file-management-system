@@ -26,11 +26,7 @@ export default {
   },
 
   mounted() {
-    const player = videojs(this.$refs.videoPlayer, {
-      controls: true,
-      autoplay: false,
-      preload: 'auto'
-    })
+    const player = videojs(this.$refs.videoPlayer)
     this.player = player 
     // this.videoPlayerWidth = this.$refs.videoPlayerDiv.offsetWidth
     this.videoPlayerHeight = this.$refs.videoPlayerDiv.offsetHeight
