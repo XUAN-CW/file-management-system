@@ -36,12 +36,12 @@ public class VideoInfo {
     }
 
     public String getVideoHttpAbsolutePathHexBinaryUrl(){
-        return "http://localhost:8080/static-resources/absolutePathHexBinary/" + HexFormat.of().formatHex(fileMetadata.getAbsolutePath().getBytes(StandardCharsets.UTF_8));
+        return "http://localhost:8081/static-resources/absolutePathHexBinary/" + HexFormat.of().formatHex(fileMetadata.getAbsolutePath().getBytes(StandardCharsets.UTF_8));
     }
 
     public String getVideoHttpUrl(){
 
-        String result =  "http://localhost:8080/static/"
+        String result =  "http://localhost:8081/static/"
                 + Arrays.stream(TargetDirUtils.getRelativizePath(fileMetadata.getFile())
                 .split("\\\\"))
                 .map(s -> URLEncoder.encode(s,StandardCharsets.UTF_8))
