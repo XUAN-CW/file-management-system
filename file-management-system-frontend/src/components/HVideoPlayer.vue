@@ -26,14 +26,17 @@ export default {
   },
 
   mounted() {
-    this.player = videojs(this.$refs.videoPlayer, {
+    const player = videojs(this.$refs.videoPlayer, {
       controls: true,
       autoplay: false,
       preload: 'auto'
     })
+    this.player = player 
     // this.videoPlayerWidth = this.$refs.videoPlayerDiv.offsetWidth
     this.videoPlayerHeight = this.$refs.videoPlayerDiv.offsetHeight
-
+    // player.on('loadedmetadata', () => {
+    //   player.poster(player.currentSrc() + '#t=3');
+    // });
   },
   beforeUnmount() {
     if (this.player) {
