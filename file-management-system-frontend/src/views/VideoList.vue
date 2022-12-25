@@ -75,7 +75,7 @@ export default {
       videoInfoList: [],
       videoPage: {
         total: 0,
-        pageSize: 99,
+        pageSize: 100,
         page: 1,
         pageCount: 30
       },
