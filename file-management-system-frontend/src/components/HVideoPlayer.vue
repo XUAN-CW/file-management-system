@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       // videoPlayerWidth: 650,
-      videoPlayerHeight: 280
+      videoPlayerHeight: 330
 
     };
   },
