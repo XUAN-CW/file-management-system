@@ -27,7 +27,7 @@ public class FileGradeUtils {
 
     @Test
     public void garbageFile() throws IOException {
-        File targetFile = new File("D:\\可删除\\Bluethebone_2018");
+        File targetFile = new File("D:\\可删除\\BoomBadaboom_2021-09_update");
 
 
 
@@ -35,6 +35,28 @@ public class FileGradeUtils {
             FileMetadata fileMetadata = new FileMetadata().setFileMetadataAbsolutePath(target.getAbsolutePath()).safetyHashing();
             FileGrade fileGrade = new FileGrade();
             fileGrade.setGrade(-1);
+            fileGrade.setSha512(fileMetadata.getSha512());
+            try {
+                fileGradeMapper.insert(fileGrade);
+            }catch (UncategorizedSQLException uncategorizedSQLException){
+                System.out.println(fileMetadata);
+            }
+
+        }
+
+    }
+
+
+    @Test
+    public void okFile() throws IOException {
+        File targetFile = new File("D:\\可删除\\LuminousArt2021Jan");
+
+
+
+        for (File target : FileMetadataUtils.getFileList(targetFile)) {
+            FileMetadata fileMetadata = new FileMetadata().setFileMetadataAbsolutePath(target.getAbsolutePath()).safetyHashing();
+            FileGrade fileGrade = new FileGrade();
+            fileGrade.setGrade(3);
             fileGrade.setSha512(fileMetadata.getSha512());
             try {
                 fileGradeMapper.insert(fileGrade);
