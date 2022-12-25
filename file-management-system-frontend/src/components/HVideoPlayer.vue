@@ -26,14 +26,14 @@ export default {
   },
 
   watch: {
-    isInViewport(newValue, oldValue) {
-      console.log(`The message has changed from "${oldValue}" to "${newValue}"`);
-      if (newValue) {
-        this.player.play()
-      } else {
-        this.player.pause()
-      }
-    }
+    // isInViewport(newValue, oldValue) {
+    //   console.log(`The message has changed from "${oldValue}" to "${newValue}"`);
+    //   if (newValue) {
+    //     this.player.play()
+    //   } else {
+    //     this.player.pause()
+    //   }
+    // }
   },
 
   mounted() {
@@ -43,15 +43,15 @@ export default {
     // this.videoPlayerWidth = this.$refs.videoPlayerDiv.offsetWidth
     // this.videoPlayerHeight = this.$refs.videoPlayerDiv.offsetHeight
 
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        this.isInViewport = true;
-      } else {
-        this.isInViewport = false;
+    // const observer = new IntersectionObserver(entries => {
+    //   if (entries[0].isIntersecting) {
+    //     this.isInViewport = true;
+    //   } else {
+    //     this.isInViewport = false;
 
-      }
-    });
-    observer.observe(this.$refs.videoPlayer);
+    //   }
+    // });
+    // observer.observe(this.$refs.videoPlayer);
   },
   beforeUnmount() {
     if (this.player) {
