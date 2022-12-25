@@ -20,19 +20,38 @@ export default {
     return {
       // videoPlayerWidth: 650,
       videoPlayerHeight: 330,
-      dataSetup: '{"fluid": true}'
-
+      dataSetup: '{"fluid": true}',
+      isInViewport: false
     };
+  },
+
+  watch: {
+    isInViewport(newValue, oldValue) {
+      console.log(`The message has changed from "${oldValue}" to "${newValue}"`);
+      if (newValue) {
+        this.player.play()
+      } else {
+        this.player.pause()
+      }
+    }
   },
 
   mounted() {
     const player = videojs(this.$refs.videoPlayer)
-    this.player = player 
+    this.player = player
+
     // this.videoPlayerWidth = this.$refs.videoPlayerDiv.offsetWidth
     this.videoPlayerHeight = this.$refs.videoPlayerDiv.offsetHeight
-    // player.on('loadedmetadata', () => {
-    //   player.poster(player.currentSrc() + '#t=3');
-    // });
+
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        this.isInViewport = true;
+      } else {
+        this.isInViewport = false;
+
+      }
+    });
+    observer.observe(this.$refs.videoPlayer);
   },
   beforeUnmount() {
     if (this.player) {
