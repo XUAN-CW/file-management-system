@@ -3,7 +3,7 @@ spring.profiles.active: database,image-viewer
 server.port: 8081
 #server.address=127.0.0.1
 file-management-system:
-  targetDir: 'D:\可删除'
+  targetDir: 'D:\可删除2'
 
 
 
