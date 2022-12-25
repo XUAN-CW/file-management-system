@@ -1,0 +1,9 @@
+#mybatis-plus.configuration.log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+spring.profiles.active: database,image-viewer
+#server.port=8080
+#server.address=127.0.0.1
+file-management-system:
+  targetDir: 'D:\可删除'
+
+
+
