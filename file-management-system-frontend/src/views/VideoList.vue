@@ -205,16 +205,16 @@ export default {
 
 
 .videoDetail {
-  opacity: 0;
+  opacity: 1;
   position: absolute;
   bottom: 0%;
   right: 0%;
   z-index: 10;
 }
 
-.videoDetail:hover {
-  opacity: 1;
-}
+// .videoDetail:hover {
+//   opacity: 1;
+// }
 
 .videoFileGradeStatus {
   width: 40%;
@@ -228,7 +228,7 @@ export default {
   margin: 0;
 
   .videoListLiCSS {
-    width: 33%;
+    width: 50%;
     height: 100%;
     display: inline-block;
   }
