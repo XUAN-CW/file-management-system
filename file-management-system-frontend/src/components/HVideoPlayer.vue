@@ -1,7 +1,7 @@
 <template>
   <div ref="videoPlayerDiv">
     <video ref="videoPlayer" :height="videoPlayerHeight" preload="auto" controls class="video-js"
-      @mouseenter="player.play()" @mouseleave="pauseAfter10s()">
+      @mouseenter="player.play()" @mouseleave="pauseAfter(10000)">
       <source :src="videoSrc">
     </video>
   </div>
@@ -26,10 +26,10 @@ export default {
   },
 
   methods: {
-    pauseAfter10s() {
+    pauseAfter(milliseconds) {
       setTimeout(() => {
         this.player.pause();
-      }, 10000);
+      }, milliseconds);
     }
   },
 
