@@ -1,7 +1,6 @@
 <template>
   <div ref="videoPlayerDiv">
-    <video ref="videoPlayer" :height="videoPlayerHeight" preload="auto" controls
-      class="video-js">
+    <video ref="videoPlayer" :height="videoPlayerHeight" preload="auto" controls class="video-js">
       <source :src="videoSrc">
     </video>
   </div>
@@ -20,7 +19,7 @@ export default {
     return {
       // videoPlayerWidth: 650,
       videoPlayerHeight: 330,
-      dataSetup: '{"fluid": true}',
+      // dataSetup: '{"fluid": true}',
       isInViewport: false
     };
   },
