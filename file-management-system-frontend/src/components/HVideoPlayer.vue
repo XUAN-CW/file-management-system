@@ -1,7 +1,7 @@
 <template>
   <div ref="videoPlayerDiv">
     <video ref="videoPlayer" :height="videoPlayerHeight" preload="auto" controls class="video-js"
-      @mouseenter="player.play()" @mouseleave="player.pause()">
+      @mouseenter="player.play()" @mouseleave="pauseAfter10s()">
       <source :src="videoSrc">
     </video>
   </div>
@@ -23,6 +23,14 @@ export default {
       // dataSetup: '{"fluid": true}',
       isInViewport: false
     };
+  },
+
+  methods: {
+    pauseAfter10s() {
+      setTimeout(() => {
+        this.player.pause();
+      }, 10000);
+    }
   },
 
   watch: {
