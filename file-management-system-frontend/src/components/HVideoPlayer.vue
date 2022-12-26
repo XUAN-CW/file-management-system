@@ -1,6 +1,7 @@
 <template>
   <div ref="videoPlayerDiv">
-    <video ref="videoPlayer" :height="videoPlayerHeight" preload="auto" controls class="video-js">
+    <video ref="videoPlayer" :height="videoPlayerHeight" preload="auto" controls class="video-js"
+      @mouseenter="player.play()" @mouseleave="player.pause()">
       <source :src="videoSrc">
     </video>
   </div>
