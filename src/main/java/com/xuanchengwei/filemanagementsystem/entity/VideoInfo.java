@@ -35,6 +35,10 @@ public class VideoInfo {
         return HexFormat.of().formatHex(fileMetadata.getAbsolutePath().getBytes(StandardCharsets.UTF_8));
     }
 
+    public String getParentAbsolutePathHexBinary(){
+        return HexFormat.of().formatHex(new File(fileMetadata.getAbsolutePath()).getParent().getBytes(StandardCharsets.UTF_8));
+    }
+
     public String getVideoHttpAbsolutePathHexBinaryUrl(){
         return "http://localhost:8081/static-resources/absolutePathHexBinary/" + HexFormat.of().formatHex(fileMetadata.getAbsolutePath().getBytes(StandardCharsets.UTF_8));
     }
