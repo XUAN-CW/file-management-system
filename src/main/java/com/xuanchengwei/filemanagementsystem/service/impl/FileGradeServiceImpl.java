@@ -25,12 +25,16 @@ public class FileGradeServiceImpl extends ServiceImpl<FileGradeMapper, FileGrade
     FileGradeMapper fileGradeMapper;
     public void insertOrUpdate(List<FileGrade> fileGradeList){
         for (FileGrade fileGrade : fileGradeList) {
-            System.out.println(fileGrade);
-            if(fileGradeMapper.selectById(fileGrade.getSha512())==null){
-                fileGradeMapper.insert(fileGrade);
-            }else {
-                fileGradeMapper.updateById(fileGrade);
-            }
+            insertOrUpdate(fileGrade);
+        }
+    }
+    
+    public void insertOrUpdate(FileGrade fileGrade){
+        System.out.println(fileGrade);
+        if(fileGradeMapper.selectById(fileGrade.getSha512())==null){
+            fileGradeMapper.insert(fileGrade);
+        }else {
+            fileGradeMapper.updateById(fileGrade);
         }
     }
 }
