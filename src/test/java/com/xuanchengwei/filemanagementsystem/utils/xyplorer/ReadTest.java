@@ -26,7 +26,7 @@ public class ReadTest {
 
 
     @Test
-    public void tag() throws IOException {
+    public void readTest() throws IOException {
 
         List<String> tagList = Files.readLines(xyplorerUtil.getTagDat(), Charsets.UTF_16);
         for (String tag : tagList) {

@@ -30,14 +30,14 @@ public class XyplorerUtil {
     private File targetDir;
 
     public File getTagDat() {
-        if(tagDat == null){
+        if(tagDat == null || !tagDat.getAbsolutePath().equals(tagDatString)){
             tagDat = new File(tagDatString);
         }
         return tagDat;
     }
 
     public File getTargetDir() {
-        if(targetDir == null){
+        if(targetDir == null || targetDir.getAbsolutePath().equals(targetDirString)){
             targetDir = new File(targetDirString);
         }
         return targetDir;
