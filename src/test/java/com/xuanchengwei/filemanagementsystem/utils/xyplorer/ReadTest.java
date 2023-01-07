@@ -56,6 +56,7 @@ public class ReadTest {
         for (DataInfo dataInfo : dataInfoList) {
             System.out.println(dataInfo);
         }
+        xyplorerUtil.write(dataInfoList);
     }
 
 }
