@@ -27,7 +27,7 @@ public class ReadTest {
     }
 
     @Test
-    public void t2() throws IOException {
+    public void writeTest() throws IOException {
         List<DataInfo> dataInfoList = xyplorerUtil.read();
 //        xyplorerUtil.write(dataInfoList.subList(1,3));
     }
