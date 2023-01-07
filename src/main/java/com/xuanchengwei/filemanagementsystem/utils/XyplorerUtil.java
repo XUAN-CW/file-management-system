@@ -73,7 +73,7 @@ public class XyplorerUtil {
         List<String> dataStringList = Files.readLines(getTagDat(), Charsets.UTF_16);
         return dataStringList.stream().parallel()
                 .filter(this::isData)
-                .filter(filePath -> new File(filePath).exists())
+                .filter(filePath -> !new File(filePath).exists())
                 .map(dataString -> {
                     try {
                         return getDateInfoFromDataString(dataString);
