@@ -36,7 +36,8 @@ public class ReadTest {
     @Test
     public void readTest() throws IOException {
         for (DataInfo dataInfo : xyplorerUtil.read()) {
-            fileGradeService.insertOrUpdate(dataInfo.getFileGrade());
+            FileGrade fileGrade = dataInfo.getFileGrade();
+            fileGradeService.insertOrUpdate(fileGrade);
         }
     }
 
