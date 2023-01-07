@@ -9,6 +9,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,6 +74,10 @@ public class XyplorerUtil {
         List<String> dataStringList = Files.readLines(getTagDat(), Charsets.UTF_16);
         return dataStringList.stream().parallel()
                 .filter(this::isData)
+                .filter(filePath -> {
+                    File file = new File(filePath);
+                    return !file.exists() || file.isDirectory();
+                })
                 .map(dataString -> {
                     try {
                         return getDateInfoFromDataString(dataString);
@@ -83,6 +88,18 @@ public class XyplorerUtil {
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+    }
+
+    public void write(List<DataInfo> dataInfoList) throws IOException {
+        List<String> notSataStringList = Files.readLines(getTagDat(), Charsets.UTF_16).stream()
+                .filter(s -> !isData(s)).toList();
+        try(BufferedWriter bufferedWriter = Files.newWriter(getTargetDir(),Charsets.UTF_16)) {
+            bufferedWriter.write("");
+            for (DataInfo dataInfo : dataInfoList) {
+
+            }
+        }
+
     }
 
 
