@@ -1,9 +1,12 @@
 package com.xuanchengwei.filemanagementsystem.utils.xyplorer;
 
 import com.xuanchengwei.filemanagementsystem.entity.FileGrade;
+import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
 import com.xuanchengwei.filemanagementsystem.entity.xyplorer.DataInfo;
 import com.xuanchengwei.filemanagementsystem.mapper.FileGradeMapper;
 import com.xuanchengwei.filemanagementsystem.service.FileGradeService;
+import com.xuanchengwei.filemanagementsystem.utils.FileMetadataUtils;
+import com.xuanchengwei.filemanagementsystem.utils.TargetDirUtils;
 import com.xuanchengwei.filemanagementsystem.utils.XyplorerUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +41,9 @@ public class ReadTest {
 
     @Test
     public void writeTest() throws IOException {
-        List<DataInfo> dataInfoList = xyplorerUtil.read();
-        for (DataInfo dataInfo : dataInfoList) {
-            FileGrade fileGrade = fileGradeMapper.selectById(dataInfo.getFileMetadata().getSha512());
+        List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(TargetDirUtils.getTargetDir());
+        for (FileMetadata fileMetadata : fileMetadataList) {
+            FileGrade fileGrade = fileGradeMapper.selectById(fileMetadata.getSha512());
             System.out.println(fileGrade);
         }
     }
