@@ -39,10 +39,10 @@ public class XyplorerUtil {
 
     public DataInfo getDateInfoFromDataString(String dataString) throws IOException {
         String[] data = dataString.split("\\|");
-        String absolutePath = data[0];
+        File file = new File(data[0]);
         Integer grade = Integer.parseInt(data[1]);
         DataInfo dataInfo = new DataInfo();
-        FileMetadata fileMetadata = new FileMetadata(new File(absolutePath)).fullHashing();
+        FileMetadata fileMetadata = new FileMetadata(new File(file)).fullHashing();
         dataInfo.setFileMetadata(fileMetadata);
         FileGrade fileGrade = new FileGrade();
         fileGrade.setSha512(fileMetadata.getSha512());
