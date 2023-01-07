@@ -24,7 +24,6 @@ public class ReadTest {
     @Autowired
     XyplorerUtil xyplorerUtil;
 
-    private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
 
     @Test
     public void tag() throws IOException {
