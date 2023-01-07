@@ -55,7 +55,7 @@ public class FileMetadataUtils {
         List<FileMetadata> fileMetadataList = new ArrayList<>(100);
         targetFileList.stream().parallel().forEach(target -> {
             try {
-                FileMetadata fileMetadata = new FileMetadata(target).safetyHashing();
+                FileMetadata fileMetadata = new FileMetadata(target).fastHashing();
                 fileMetadataList.add(fileMetadata);
             } catch (IOException e) {
                 System.out.println(target.getAbsolutePath());
