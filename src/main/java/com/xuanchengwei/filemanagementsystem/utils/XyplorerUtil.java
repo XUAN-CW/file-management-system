@@ -35,14 +35,14 @@ public class XyplorerUtil {
 
     private File targetDir;
 
-    public File getTagDat() {
+    private File getTagDat() {
         if(tagDat == null || !tagDat.getAbsolutePath().equals(tagDatString)){
             tagDat = new File(tagDatString);
         }
         return tagDat;
     }
 
-    public File getTargetDir() {
+    private File getTargetDir() {
         if(targetDir == null || targetDir.getAbsolutePath().equals(targetDirString)){
             targetDir = new File(targetDirString);
         }
@@ -55,7 +55,7 @@ public class XyplorerUtil {
         return TAG_DATA_PATTERN.matcher(dataString).matches();
     }
 
-    public DataInfo getDateInfoFromDataString(String dataString) throws IOException {
+    private DataInfo getDateInfoFromDataString(String dataString) throws IOException {
         String[] data = dataString.split("\\|");
         File file = new File(data[0]);
         Integer grade = Integer.parseInt(data[1]);
