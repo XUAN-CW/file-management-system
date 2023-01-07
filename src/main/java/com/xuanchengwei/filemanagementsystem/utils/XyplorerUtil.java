@@ -83,7 +83,6 @@ public class XyplorerUtil {
     }
 
     public void write(List<DataInfo> dataInfoList) throws IOException {
-
         List<String> notDataStringList = Files.readLines(getTagDat(), Charsets.UTF_16).stream()
                 .filter(s -> !isData(s)).toList();
         Files.asCharSink(getTagDat(),Charsets.UTF_16).writeLines(notDataStringList);
