@@ -82,7 +82,9 @@ public class XyplorerUtil {
                         e.printStackTrace();
                     }
                     return null;
-                }).filter(Objects::nonNull).collect(Collectors.toList());
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
 
