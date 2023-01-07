@@ -42,7 +42,7 @@ public class XyplorerUtil {
         File file = new File(data[0]);
         Integer grade = Integer.parseInt(data[1]);
         DataInfo dataInfo = new DataInfo();
-        FileMetadata fileMetadata = new FileMetadata(new File(file)).fullHashing();
+        FileMetadata fileMetadata = new FileMetadata(file).fullHashing();
         dataInfo.setFileMetadata(fileMetadata);
         FileGrade fileGrade = new FileGrade();
         fileGrade.setSha512(fileMetadata.getSha512());
