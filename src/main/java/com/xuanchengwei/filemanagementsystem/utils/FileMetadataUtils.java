@@ -53,7 +53,7 @@ public class FileMetadataUtils {
         }
 
         List<FileMetadata> fileMetadataList = new ArrayList<>(100);
-        targetFileList.stream().parallel().forEach(target -> {
+        targetFileList.forEach(target -> {
             try {
                 FileMetadata fileMetadata = new FileMetadata(target).fastHashing();
                 fileMetadataList.add(fileMetadata);
