@@ -2,6 +2,7 @@ package com.xuanchengwei.filemanagementsystem.utils;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.CharSink;
+import com.google.common.io.FileWriteMode;
 import com.google.common.io.Files;
 import com.xuanchengwei.filemanagementsystem.entity.FileGrade;
 import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
@@ -82,12 +83,12 @@ public class XyplorerUtil {
     }
 
     public void write(List<DataInfo> dataInfoList) throws IOException {
-        CharSink charSink = Files.asCharSink(getTagDat(),Charsets.UTF_16);
+
         List<String> notDataStringList = Files.readLines(getTagDat(), Charsets.UTF_16).stream()
                 .filter(s -> !isData(s)).toList();
-        charSink.writeLines(notDataStringList);
+        Files.asCharSink(getTagDat(),Charsets.UTF_16).writeLines(notDataStringList);
         List<String> dataStringList = dataInfoList.stream().map(DataInfo::toXyplorerData).toList();
-        charSink.writeLines(dataStringList);
+        Files.asCharSink(getTagDat(),Charsets.UTF_16, FileWriteMode.APPEND).writeLines(dataStringList);
 
     }
 
