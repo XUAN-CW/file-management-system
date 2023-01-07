@@ -14,10 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -86,10 +83,14 @@ public class XyplorerUtil {
     public void write(List<DataInfo> dataInfoList) throws IOException {
         List<String> notDataStringList = Files.readLines(getTagDat(), Charsets.UTF_16).stream()
                 .filter(s -> !isData(s)).toList();
-        Files.asCharSink(getTagDat(),Charsets.UTF_16).writeLines(notDataStringList);
-        dataInfoList.sort(Comparator.comparing(DataInfo::getAbsolutePath));
         List<String> dataStringList = dataInfoList.stream().map(DataInfo::toXyplorerData).toList();
-        Files.asCharSink(getTagDat(),Charsets.UTF_16, FileWriteMode.APPEND).writeLines(dataStringList);
+
+        List<String> tagDatList = new ArrayList<>();
+        tagDatList.addAll(notDataStringList);
+        tagDatList.addAll(dataStringList);
+        Collections.sort(tagDatList.subList(notDataStringList.size(),tagDatList.size() - 1));
+
+        Files.asCharSink(getTagDat(),Charsets.UTF_16).writeLines(tagDatList);
 
     }
 
