@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
 /**
  * @author 禤成伟
@@ -25,4 +26,17 @@ public class XyplorerUtil {
         }
         return tagDat;
     }
+
+    private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
+
+    public boolean isData(String dataString){
+        return TAG_DATA_PATTERN.matcher(dataString).matches();
+    }
+
+
+
+
+
+
+
 }

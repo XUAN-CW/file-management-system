@@ -30,8 +30,7 @@ public class ReadTest {
 
         List<String> tagList = Files.readLines(xyplorerUtil.getTagDat(), Charsets.UTF_16);
         for (String tag : tagList) {
-//            System.out.println(tag);
-            if(TAG_DATA_PATTERN.matcher(tag).matches()){
+            if(xyplorerUtil.isData(tag)){
                 String[] params = tag.split("\\|");
                 String filePath = params[0];
                 int grade = Integer.parseInt(params[1]);
