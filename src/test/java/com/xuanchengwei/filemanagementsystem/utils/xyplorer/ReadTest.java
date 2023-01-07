@@ -2,7 +2,9 @@ package com.xuanchengwei.filemanagementsystem.utils.xyplorer;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
+import com.xuanchengwei.filemanagementsystem.utils.XyplorerUtil;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,15 +19,16 @@ import java.util.regex.Pattern;
  */
 @SpringBootTest
 public class ReadTest {
-    @Value("${xyplorer.tag-dat}")
-    String tagDatString;
+
+    @Autowired
+    XyplorerUtil xyplorerUtil;
 
     private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
 
     @Test
     public void tag() throws IOException {
-        File tagDat = new File(tagDatString);
-        List<String> tagList = Files.readLines(tagDat, Charsets.UTF_16);
+
+        List<String> tagList = Files.readLines(xyplorerUtil.getTagDat(), Charsets.UTF_16);
         for (String tag : tagList) {
 //            System.out.println(tag);
             if(TAG_DATA_PATTERN.matcher(tag).matches()){
