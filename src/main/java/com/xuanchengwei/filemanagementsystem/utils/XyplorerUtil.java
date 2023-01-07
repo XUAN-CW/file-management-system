@@ -33,7 +33,11 @@ public class XyplorerUtil {
         return TAG_DATA_PATTERN.matcher(dataString).matches();
     }
 
-
+    public File getFilePathFromDataString(String dataString){
+        String[] params = dataString.split("\\|");
+        String filePath = params[0];
+        return new File(filePath);
+    }
 
 
 
