@@ -78,7 +78,7 @@ public class XyplorerUtil {
                     }
                     return null;
                 })
-                .filter(dataInfo -> dataInfo == null || dataInfo.getFile().exists() || dataInfo.getFile().isDirectory())
+                .filter(dataInfo -> dataInfo != null && dataInfo.getFile().exists() && dataInfo.getFile().isFile())
                 .collect(Collectors.toList());
     }
 
