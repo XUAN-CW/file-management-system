@@ -58,15 +58,9 @@ public class XyplorerUtil {
 
     private DataInfo getDateInfoFromDataString(String dataString) throws IOException {
         String[] data = dataString.split("\\|");
-        File file = new File(data[0]);
-        Integer grade = Integer.parseInt(data[1]);
         DataInfo dataInfo = new DataInfo();
-        FileMetadata fileMetadata = new FileMetadata(file).fastHashing();
-        dataInfo.setFileMetadata(fileMetadata);
-        FileGrade fileGrade = new FileGrade();
-        fileGrade.setSha512(fileMetadata.getSha512());
-        fileGrade.setGrade(grade);
-        dataInfo.setFileGrade(fileGrade);
+        dataInfo.setAbsolutePath(data[0]);
+        dataInfo.setGrade(Integer.parseInt(data[1]));
         return dataInfo;
     }
 
@@ -74,10 +68,6 @@ public class XyplorerUtil {
         List<String> dataStringList = Files.readLines(getTagDat(), Charsets.UTF_16);
         return dataStringList.stream().parallel()
                 .filter(this::isData)
-                .filter(filePath -> {
-                    File file = new File(filePath);
-                    return !file.exists() || file.isDirectory();
-                })
                 .map(dataString -> {
                     try {
                         return getDateInfoFromDataString(dataString);
