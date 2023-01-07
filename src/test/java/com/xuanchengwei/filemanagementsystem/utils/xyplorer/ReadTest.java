@@ -26,7 +26,10 @@ public class ReadTest {
     @Test
     public void readTest() throws IOException {
         for (DataInfo dataInfo : xyplorerUtil.read()) {
-            fileGradeMapper.insert(dataInfo.getFileGrade());
+            if(dataInfo.getFile().isDirectory()){
+                System.out.println(dataInfo.getAbsolutePath());
+            }
+//            fileGradeMapper.insert(dataInfo.getFileGrade());
         }
     }
 
