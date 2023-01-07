@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,9 +43,18 @@ public class ReadTest {
     @Test
     public void writeTest() throws IOException {
         List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(TargetDirUtils.getTargetDir());
+        List<DataInfo> dataInfoList = new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
             FileGrade fileGrade = fileGradeMapper.selectById(fileMetadata.getSha512());
-            System.out.println(fileGrade);
+            if(fileGrade != null){
+                DataInfo dataInfo = new DataInfo();
+                dataInfo.setAbsolutePath(fileMetadata.getAbsolutePath());
+                dataInfo.setGrade(fileGrade.getGrade());
+                dataInfoList.add(dataInfo);
+            }
+        }
+        for (DataInfo dataInfo : dataInfoList) {
+            System.out.println(dataInfo);
         }
     }
 
