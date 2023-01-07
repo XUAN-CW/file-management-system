@@ -70,8 +70,8 @@ public class XyplorerUtil {
     }
 
     public List<DataInfo> read() throws IOException {
-        List<String> dataList = Files.readLines(getTagDat(), Charsets.UTF_16);
-        return dataList.stream().parallel().filter(this::isData).map(s -> {
+        List<String> dataStringList = Files.readLines(getTagDat(), Charsets.UTF_16);
+        return dataStringList.stream().parallel().filter(this::isData).map(s -> {
             try {
                 return getDateInfoFromDataString(s);
             } catch (IOException e) {
