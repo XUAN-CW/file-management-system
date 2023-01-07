@@ -29,7 +29,7 @@ public class FileMetadataTest {
     public void fileMetadataUtil() throws IOException {
         List<FileMetadata> fileMetadataList = new ArrayList<>(100);
 
-        FileMetadataUtils.getFileList(new File("D:\\可删除")).stream().parallel().forEach(target -> {
+        FileMetadataUtils.getFileList(new File("D:\\可删除2")).stream().parallel().forEach(target -> {
 //            System.out.println(target.getAbsolutePath());
             try {
                 FileMetadata fileMetadata = new FileMetadata(target).safetyHashing();
