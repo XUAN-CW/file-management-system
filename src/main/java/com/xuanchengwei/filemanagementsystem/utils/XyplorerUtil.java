@@ -43,7 +43,7 @@ public class XyplorerUtil {
     }
 
     private File getTargetDir() {
-        if(targetDir == null || targetDir.getAbsolutePath().equals(targetDirString)){
+        if(targetDir == null || !targetDir.getAbsolutePath().equals(targetDirString)){
             targetDir = new File(targetDirString);
         }
         return targetDir;
