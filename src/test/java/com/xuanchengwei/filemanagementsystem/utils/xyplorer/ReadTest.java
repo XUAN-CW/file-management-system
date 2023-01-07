@@ -2,6 +2,7 @@ package com.xuanchengwei.filemanagementsystem.utils.xyplorer;
 
 import com.xuanchengwei.filemanagementsystem.entity.xyplorer.DataInfo;
 import com.xuanchengwei.filemanagementsystem.mapper.FileGradeMapper;
+import com.xuanchengwei.filemanagementsystem.service.FileGradeService;
 import com.xuanchengwei.filemanagementsystem.utils.XyplorerUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +22,12 @@ public class ReadTest {
     XyplorerUtil xyplorerUtil;
 
     @Autowired
-    FileGradeMapper fileGradeMapper;
+    FileGradeService fileGradeService;
 
     @Test
     public void readTest() throws IOException {
         for (DataInfo dataInfo : xyplorerUtil.read()) {
-            if(dataInfo.getFile().isDirectory()){
-                System.out.println(dataInfo.getAbsolutePath());
-            }
-//            fileGradeMapper.insert(dataInfo.getFileGrade());
+            fileGradeService.insertOrUpdate(dataInfo.getFileGrade());
         }
     }
 
