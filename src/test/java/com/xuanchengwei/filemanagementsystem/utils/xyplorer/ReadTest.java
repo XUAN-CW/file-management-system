@@ -1,5 +1,6 @@
 package com.xuanchengwei.filemanagementsystem.utils.xyplorer;
 
+import com.xuanchengwei.filemanagementsystem.entity.FileGrade;
 import com.xuanchengwei.filemanagementsystem.entity.xyplorer.DataInfo;
 import com.xuanchengwei.filemanagementsystem.mapper.FileGradeMapper;
 import com.xuanchengwei.filemanagementsystem.service.FileGradeService;
@@ -24,6 +25,10 @@ public class ReadTest {
     @Autowired
     FileGradeService fileGradeService;
 
+    @Autowired
+    FileGradeMapper fileGradeMapper;
+
+
     @Test
     public void readTest() throws IOException {
         for (DataInfo dataInfo : xyplorerUtil.read()) {
@@ -34,7 +39,10 @@ public class ReadTest {
     @Test
     public void writeTest() throws IOException {
         List<DataInfo> dataInfoList = xyplorerUtil.read();
-        xyplorerUtil.write(dataInfoList.subList(1,3));
+        for (DataInfo dataInfo : dataInfoList) {
+            FileGrade fileGrade = fileGradeMapper.selectById(dataInfo.getFileMetadata().getSha512());
+            System.out.println(fileGrade);
+        }
     }
 
 }
