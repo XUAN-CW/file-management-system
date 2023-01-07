@@ -35,4 +35,34 @@ public class FileMetadataUtils {
         }
         return targetFileList;
     }
+
+    public static List<FileMetadata> getFileMetadataList(File targetDir) throws IOException {
+        List<File> targetFileList = new ArrayList<>();
+        if(targetDir.isFile()){
+            targetFileList.add(targetDir);
+        }else {
+            Files.walkFileTree(targetDir.toPath(), new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+                    if(!file.toFile().getAbsolutePath().endsWith(FileMetadata.SUFFIX)){
+                        targetFileList.add(file.toFile());
+                    }
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        }
+
+        List<FileMetadata> fileMetadataList = new ArrayList<>(100);
+        targetFileList.stream().parallel().forEach(target -> {
+            try {
+                FileMetadata fileMetadata = new FileMetadata(target).safetyHashing();
+                fileMetadataList.add(fileMetadata);
+            } catch (IOException e) {
+                System.out.println(target.getAbsolutePath());
+                e.printStackTrace();
+            }
+        });
+
+        return fileMetadataList;
+    }
 }
