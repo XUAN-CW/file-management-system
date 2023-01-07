@@ -44,6 +44,7 @@ public class ReadTest {
 
     @Test
     public void writeTest() throws IOException {
+        readTest();
         List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(TargetDirUtils.getTargetDir());
         List<DataInfo> dataInfoList = new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
