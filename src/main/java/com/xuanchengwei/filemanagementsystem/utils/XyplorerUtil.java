@@ -1,10 +1,14 @@
 package com.xuanchengwei.filemanagementsystem.utils;
 
+import com.xuanchengwei.filemanagementsystem.entity.FileGrade;
+import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
+import com.xuanchengwei.filemanagementsystem.entity.xyplorer.DataInfo;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 /**
@@ -33,10 +37,18 @@ public class XyplorerUtil {
         return TAG_DATA_PATTERN.matcher(dataString).matches();
     }
 
-    public File getFilePathFromDataString(String dataString){
-        String[] params = dataString.split("\\|");
-        String filePath = params[0];
-        return new File(filePath);
+    public DataInfo getDateInfoFromDataString(String dataString) throws IOException {
+        String[] data = dataString.split("\\|");
+        String absolutePath = data[0];
+        Integer grade = Integer.parseInt(data[1]);
+        DataInfo dataInfo = new DataInfo();
+        FileMetadata fileMetadata = new FileMetadata(new File(absolutePath)).fullHashing();
+        dataInfo.setFileMetadata(fileMetadata);
+        FileGrade fileGrade = new FileGrade();
+        fileGrade.setSha512(fileMetadata.getSha512());
+        fileGrade.setGrade(grade);
+        dataInfo.setFileGrade(fileGrade);
+        return dataInfo;
     }
 
 
