@@ -22,13 +22,25 @@ public class XyplorerUtil {
     @Value("${xyplorer.tag-dat}")
     private String tagDatString;
 
+    @Value("${file-management-system.targetDir}")
+    private String targetDirString;
+
     private File tagDat;
+
+    private File targetDir;
 
     public File getTagDat() {
         if(tagDat == null){
             tagDat = new File(tagDatString);
         }
         return tagDat;
+    }
+
+    public File getTargetDir() {
+        if(targetDir == null){
+            targetDir = new File(targetDirString);
+        }
+        return targetDir;
     }
 
     private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
