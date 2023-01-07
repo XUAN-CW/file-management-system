@@ -58,7 +58,6 @@ public class XyplorerUtil {
     public DataInfo getDateInfoFromDataString(String dataString) throws IOException {
         String[] data = dataString.split("\\|");
         File file = new File(data[0]);
-        if(!file.exists() || !file.isFile()){ return null; }
         Integer grade = Integer.parseInt(data[1]);
         DataInfo dataInfo = new DataInfo();
         FileMetadata fileMetadata = new FileMetadata(file).fastHashing();
