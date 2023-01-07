@@ -29,7 +29,7 @@ public class ReadTest {
     @Test
     public void writeTest() throws IOException {
         List<DataInfo> dataInfoList = xyplorerUtil.read();
-//        xyplorerUtil.write(dataInfoList.subList(1,3));
+        xyplorerUtil.write(dataInfoList.subList(1,3));
     }
 
 }

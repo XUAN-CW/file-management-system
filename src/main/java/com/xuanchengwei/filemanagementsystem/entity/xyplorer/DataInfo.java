@@ -33,5 +33,8 @@ public class DataInfo {
         return fileGrade;
     }
 
+    public String toXyplorerData(){
+        return  getFile().getAbsolutePath() + "|"+ getGrade() +"||||||||||||||||||";
+    }
 
 }

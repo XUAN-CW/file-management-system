@@ -83,12 +83,14 @@ public class XyplorerUtil {
     public void write(List<DataInfo> dataInfoList) throws IOException {
         List<String> notSataStringList = Files.readLines(getTagDat(), Charsets.UTF_16).stream()
                 .filter(s -> !isData(s)).toList();
-        try(BufferedWriter bufferedWriter = Files.newWriter(getTargetDir(),Charsets.UTF_16)) {
-            bufferedWriter.write("");
-            for (DataInfo dataInfo : dataInfoList) {
+        Files.asCharSink(getTagDat(),Charsets.UTF_16).writeLines(notSataStringList);
 
-            }
-        }
+//        try(BufferedWriter bufferedWriter = Files.newWriter(getTargetDir(),Charsets.UTF_16)) {
+//
+//            for (DataInfo dataInfo : dataInfoList) {
+//
+//            }
+//        }
 
     }
 
