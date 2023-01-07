@@ -16,4 +16,5 @@ import java.util.List;
  */
 public interface FileGradeService extends IService<FileGrade> {
     public void insertOrUpdate(List<FileGrade> fileGradeList);
+    public void insertOrUpdate(FileGrade fileGrade);
 }
