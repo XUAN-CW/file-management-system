@@ -32,8 +32,12 @@ public class ReadTest {
         for (String tag : tagList) {
             if(xyplorerUtil.isData(tag)){
                 DataInfo dataInfo = xyplorerUtil.getDateInfoFromDataString(tag);
-                System.out.println(dataInfo.getFileMetadata().getAbsolutePath() +"\t"
-                + dataInfo.getFileGrade().getGrade());
+                if (dataInfo != null) {
+
+                    System.out.println(dataInfo.getFileMetadata().getAbsolutePath() +"\t"
+                            + dataInfo.getFileGrade().getGrade());
+
+                }
             }
         }
 

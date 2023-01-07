@@ -43,7 +43,7 @@ public class XyplorerUtil {
         if(!file.exists() || !file.isFile()){ return null; }
         Integer grade = Integer.parseInt(data[1]);
         DataInfo dataInfo = new DataInfo();
-        FileMetadata fileMetadata = new FileMetadata(file).fullHashing();
+        FileMetadata fileMetadata = new FileMetadata(file).fastHashing();
         dataInfo.setFileMetadata(fileMetadata);
         FileGrade fileGrade = new FileGrade();
         fileGrade.setSha512(fileMetadata.getSha512());
