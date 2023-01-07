@@ -88,7 +88,7 @@ public class XyplorerUtil {
         List<String> tagDatList = new ArrayList<>();
         tagDatList.addAll(notDataStringList);
         tagDatList.addAll(dataStringList);
-        Collections.sort(tagDatList.subList(notDataStringList.size(),tagDatList.size() - 1));
+        Collections.sort(tagDatList.subList(notDataStringList.size()-1,tagDatList.size() - 1));
 
         Files.asCharSink(getTagDat(),Charsets.UTF_16).writeLines(tagDatList);
 
