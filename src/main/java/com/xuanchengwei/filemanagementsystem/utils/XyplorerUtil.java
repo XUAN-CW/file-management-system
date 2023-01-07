@@ -71,14 +71,17 @@ public class XyplorerUtil {
 
     public List<DataInfo> read() throws IOException {
         List<String> dataStringList = Files.readLines(getTagDat(), Charsets.UTF_16);
-        return dataStringList.stream().parallel().filter(this::isData).map(s -> {
-            try {
-                return getDateInfoFromDataString(s);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }).collect(Collectors.toList());
+        return dataStringList.stream().parallel()
+                .filter(this::isData)
+                .filter(filePath -> new File(filePath).exists())
+                .map(dataString -> {
+                    try {
+                        return getDateInfoFromDataString(dataString);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }).collect(Collectors.toList());
     }
 
 
