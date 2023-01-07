@@ -24,26 +24,11 @@ public class ReadTest {
     @Autowired
     XyplorerUtil xyplorerUtil;
 
-
     @Test
-    public void readTest() throws IOException {
-
-        List<String> tagList = Files.readLines(xyplorerUtil.getTagDat(), Charsets.UTF_16);
-        for (String tag : tagList) {
-            if(xyplorerUtil.isData(tag)){
-                DataInfo dataInfo = xyplorerUtil.getDateInfoFromDataString(tag);
-                if (dataInfo != null) {
-
-                    System.out.println(dataInfo.getFileMetadata().getAbsolutePath() +"\t"
-                            + dataInfo.getFileGrade().getGrade());
-
-                }
-            }
+    public void t1() throws IOException {
+        for (DataInfo dataInfo : xyplorerUtil.read()) {
+            System.out.println(dataInfo);
         }
-
-
-
-
     }
 
 
