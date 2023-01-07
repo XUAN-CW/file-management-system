@@ -2,6 +2,7 @@ package com.xuanchengwei.filemanagementsystem.utils.xyplorer;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
+import com.xuanchengwei.filemanagementsystem.entity.xyplorer.DataInfo;
 import com.xuanchengwei.filemanagementsystem.utils.XyplorerUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,9 @@ public class ReadTest {
         List<String> tagList = Files.readLines(xyplorerUtil.getTagDat(), Charsets.UTF_16);
         for (String tag : tagList) {
             if(xyplorerUtil.isData(tag)){
-                String[] params = tag.split("\\|");
-                String filePath = params[0];
-                int grade = Integer.parseInt(params[1]);
-                System.out.println(filePath + "\t" + grade);
+                DataInfo dataInfo = xyplorerUtil.getDateInfoFromDataString(tag);
+                System.out.println(dataInfo.getFileMetadata().getAbsolutePath() +"\t"
+                + dataInfo.getFileGrade().getGrade());
             }
         }
 
