@@ -43,7 +43,7 @@ public class ImageController {
     @GetMapping("getImageList")
     public List<ImageInfo> getImageList() throws IOException {
 
-        List<ImageInfo> targetFileList = new ArrayList<>();
+        List<ImageInfo> targetFileList =Collections.synchronizedList( new ArrayList<>());
         Files.walkFileTree(new File(imageDirString).toPath(), new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {

@@ -33,7 +33,7 @@ public class VideoController {
 
     @GetMapping("getVideoList")
     public List<VideoInfo> getVideoList() throws IOException {
-        List<VideoInfo> targetFileList = new ArrayList<>();
+        List<VideoInfo> targetFileList = Collections.synchronizedList(new ArrayList<>());
         Files.walkFileTree(TargetDirUtils.getTargetDir().toPath(), new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {

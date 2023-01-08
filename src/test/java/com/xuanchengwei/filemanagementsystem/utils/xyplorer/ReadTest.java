@@ -46,7 +46,7 @@ public class ReadTest {
     public void writeTest() throws IOException {
         readTest();
         List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(TargetDirUtils.getTargetDir());
-        List<DataInfo> dataInfoList = new ArrayList<>();
+        List<DataInfo> dataInfoList =  new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
             FileGrade fileGrade = fileGradeMapper.selectById(fileMetadata.getSha512());
             if(fileGrade != null){

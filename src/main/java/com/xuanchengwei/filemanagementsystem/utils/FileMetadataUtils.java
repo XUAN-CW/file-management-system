@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -52,7 +53,7 @@ public class FileMetadataUtils {
             });
         }
 
-        List<FileMetadata> fileMetadataList = new ArrayList<>(100);
+        List<FileMetadata> fileMetadataList = Collections.synchronizedList(new ArrayList<>(100));
         targetFileList.forEach(target -> {
             try {
                 FileMetadata fileMetadata = new FileMetadata(target).fastHashing();

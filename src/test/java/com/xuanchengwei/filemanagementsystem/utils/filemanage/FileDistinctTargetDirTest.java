@@ -31,7 +31,7 @@ public class FileDistinctTargetDirTest {
     @Test
     public void FileDistinctUtil() throws IOException {
         File targetDir = new File(targetDirString);
-        List<FileMetadata> needDistinctFileMetadataList = new ArrayList<>(100);
+        List<FileMetadata> needDistinctFileMetadataList =Collections.synchronizedList( new ArrayList<>(100));
 
         FileMetadataUtils.getFileList(targetDir).stream().forEach(target -> {
             System.out.println(target.getAbsolutePath());
