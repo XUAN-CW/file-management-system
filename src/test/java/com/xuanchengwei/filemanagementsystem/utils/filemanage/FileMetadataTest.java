@@ -28,9 +28,9 @@ public class FileMetadataTest {
 
     @Test
     public void fileMetadataUtil() throws IOException {
-        List<FileMetadata> fileMetadataList = Collections.synchronizedList( new ArrayList<>(100));
+        List<FileMetadata> fileMetadataList = Collections.synchronizedList( new ArrayList<>(10000));
 
-        FileMetadataUtils.getFileList(new File("D:\\可删除2")).stream().parallel().forEach(target -> {
+        FileMetadataUtils.getFileList(new File("E:\\")).stream().parallel().forEach(target -> {
 //            System.out.println(target.getAbsolutePath());
             try {
                 FileMetadata fileMetadata = new FileMetadata(target).safetyHashing();
