@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HexFormat;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class ImageController {
     @GetMapping("getImageList")
     public List<ImageInfo> getImageList() throws IOException {
 
-        List<ImageInfo> targetFileList =Collections.synchronizedList( new ArrayList<>());
+        List<ImageInfo> targetFileList = Collections.synchronizedList( new ArrayList<>());
         Files.walkFileTree(new File(imageDirString).toPath(), new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {
