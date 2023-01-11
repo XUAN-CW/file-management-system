@@ -30,10 +30,10 @@ public class FileMetadataTest {
     public void fileMetadataUtil() throws IOException {
         List<FileMetadata> fileMetadataList = Collections.synchronizedList( new ArrayList<>(10000));
 
-        FileMetadataUtils.getFileList(new File("E:\\")).stream().parallel().forEach(target -> {
+        FileMetadataUtils.getFileList(new File("E:\\select")).stream().parallel().forEach(target -> {
 //            System.out.println(target.getAbsolutePath());
             try {
-                FileMetadata fileMetadata = new FileMetadata(target).safetyHashing();
+                FileMetadata fileMetadata = new FileMetadata(target).fastHashing();
                 fileMetadataList.add(fileMetadata);
             } catch (IOException e) {
                 System.out.println(target.getAbsolutePath());
