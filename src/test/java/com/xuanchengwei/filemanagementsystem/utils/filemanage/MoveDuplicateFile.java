@@ -13,14 +13,18 @@ import java.util.stream.Collectors;
  * @date 2023-02-02 - 0:13
  */
 public class MoveDuplicateFile {
+    static final String duplicateFileDir = "duplicate_file_dir";
 
     public static void main(String[] args) throws IOException {
         File duplicateFileTxt = new File("metadata/duplicate_file.txt");
         List<File> duplicateFileList = Files.readLines(duplicateFileTxt, StandardCharsets.UTF_8)
                 .stream().map(File::new).filter(File::exists).toList();
         for (File file : duplicateFileList) {
-            System.out.println(file.getAbsolutePath());
+            StringBuffer stringBuffer = new StringBuffer(file.getAbsolutePath());
+            stringBuffer.insert(3,duplicateFileDir+File.separator);
+            System.out.println(stringBuffer);
         }
+
 
     }
 }
