@@ -23,15 +23,15 @@ public class FileMetadataTest {
     @Autowired
     FileMetadataMapper fileMetadataMapper;
 
-    @Value("${file-management-system.targetDir}")
-    String targetDirString;
+//    @Value("${file-management-system.targetDir}")
+//    String targetDirString;
 
     @Test
     public void fileMetadataUtil() throws IOException {
         List<FileMetadata> fileMetadataList = Collections.synchronizedList( new ArrayList<>(10000));
 
-        FileMetadataUtils.getFileList(new File("E:\\select")).stream().parallel().forEach(target -> {
-//            System.out.println(target.getAbsolutePath());
+        FileMetadataUtils.getFileList(new File("R:\\3D")).stream().parallel().forEach(target -> {
+            System.out.println(target.getAbsolutePath());
             try {
                 FileMetadata fileMetadata = new FileMetadata(target).fastHashing();
                 fileMetadataList.add(fileMetadata);
