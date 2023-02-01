@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @date 2023-02-02 - 0:13
  */
 public class MoveDuplicateFile {
-    static final String duplicateFileDir = "duplicate_file_dir";
+    static final String duplicateFileDir = "duplicate_file";
 
     public static void main(String[] args) throws IOException {
         File duplicateFileTxt = new File("metadata/duplicate_file.txt");
