@@ -20,9 +20,9 @@ public class MoveDuplicateFile {
         List<File> duplicateFileList = Files.readLines(duplicateFileTxt, StandardCharsets.UTF_8)
                 .stream().map(File::new).filter(File::exists).toList();
         for (File file : duplicateFileList) {
-            StringBuffer stringBuffer = new StringBuffer(file.getAbsolutePath());
-            stringBuffer.insert(3,duplicateFileDir+File.separator);
-            System.out.println(stringBuffer);
+            File duplicateFileMoveTo = new File(new StringBuffer(file.getAbsolutePath())
+                    .insert(3,duplicateFileDir+File.separator).toString());
+            System.out.println(duplicateFileMoveTo);
         }
 
 
