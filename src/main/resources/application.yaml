@@ -3,7 +3,7 @@ spring.profiles.active: database,xyplorer
 server.port: 8081
 #server.address=127.0.0.1
 file-management-system:
-  targetDir: 'D:\可删除2\1\Washa_collection\Washa collection\St Louis Luxurious Bang'
+  targetDir: 'R:\3D'
 
 
 
