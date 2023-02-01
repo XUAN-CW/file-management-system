@@ -5,6 +5,8 @@ import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 禤成伟
@@ -14,11 +16,10 @@ public class MoveDuplicateFile {
 
     public static void main(String[] args) throws IOException {
         File duplicateFileTxt = new File("metadata/duplicate_file.txt");
-        for (String line : Files.readLines(duplicateFileTxt, StandardCharsets.UTF_8)) {
-            File duplicateFile = new File(line);
-            if(duplicateFile.exists()){
-                System.out.println(duplicateFile.getAbsolutePath());
-            }
+        List<File> duplicateFileList = Files.readLines(duplicateFileTxt, StandardCharsets.UTF_8)
+                .stream().map(File::new).filter(File::exists).toList();
+        for (File file : duplicateFileList) {
+            System.out.println(file.getAbsolutePath());
         }
 
     }
