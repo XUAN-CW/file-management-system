@@ -1,6 +1,7 @@
 package com.xuanchengwei.filemanagementsystem.utils.filemanage;
 
 import com.google.common.io.Files;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class MoveDuplicateFile {
             File duplicateFileMoveTo = new File(new StringBuffer(file.getAbsolutePath())
                     .insert(3,duplicateFileDir+File.separator).toString());
             System.out.println(duplicateFileMoveTo);
+            FileUtils.moveFile(file,duplicateFileMoveTo);
         }
 
 
