@@ -16,7 +16,7 @@ public class DeleteEmptyDirectories {
                 }
             }
             System.out.println(directory.list().length + "  " +directory.getAbsolutePath());
-            if (directory.list().length == 0 || FileMetadataUtils.getFileList(directory).size() == 0) {
+            if (FileMetadataUtils.getFileList(directory).size() == 0) {
                 directory.delete();
             }
         }
