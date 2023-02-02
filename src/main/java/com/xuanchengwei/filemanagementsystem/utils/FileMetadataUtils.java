@@ -58,12 +58,7 @@ public class FileMetadataUtils {
     public static FileMetadata fastHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
         if(fileMetadata.getMetadataStore().exists()){
-            try {
-                return new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class);
-            }catch (Exception e){
-                e.printStackTrace();
-                return fullHashing(file);
-            }
+            return new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class);
         }
         return fullHashing(file);
     }
@@ -94,14 +89,9 @@ public class FileMetadataUtils {
         FileMetadata fileMetadata = new FileMetadata(file);
         if(fileMetadata.getMetadataStore().exists()){
             ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                fileMetadata = objectMapper.readValue(fileMetadata.getMetadataStore(), FileMetadata.class);
-                if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
-                    return fileMetadata;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                return fullHashing(file);
+            fileMetadata = objectMapper.readValue(fileMetadata.getMetadataStore(), FileMetadata.class);
+            if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
+                return fileMetadata;
             }
         }
         return fullHashing(file);
