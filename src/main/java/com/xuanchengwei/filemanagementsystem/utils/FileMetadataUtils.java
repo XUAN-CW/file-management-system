@@ -21,12 +21,12 @@ import java.util.List;
  */
 public class FileMetadataUtils {
 
-    public static List<File> getFileList(File targetFile) throws IOException {
+    public static List<File> getFileList(File directory) throws IOException {
         List<File> targetFileList = new ArrayList<>();
-        if(targetFile.isFile()){
-            targetFileList.add(targetFile);
+        if(directory.isFile()){
+            targetFileList.add(directory);
         }else {
-            Files.walkFileTree(targetFile.toPath(), new SimpleFileVisitor<Path>() {
+            Files.walkFileTree(directory.toPath(), new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
                     if(!file.toFile().getAbsolutePath().endsWith(FileMetadata.SUFFIX)){
