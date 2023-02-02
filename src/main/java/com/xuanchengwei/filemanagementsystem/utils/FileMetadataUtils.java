@@ -38,23 +38,9 @@ public class FileMetadataUtils {
     }
 
     public static List<FileMetadata> getFileMetadataList(File targetDir) throws IOException {
-        List<File> targetFileList = new ArrayList<>();
-        if(targetDir.isFile()){
-            targetFileList.add(targetDir);
-        }else {
-            Files.walkFileTree(targetDir.toPath(), new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                    if(!file.toFile().getAbsolutePath().endsWith(FileMetadata.SUFFIX)){
-                        targetFileList.add(file.toFile());
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        }
 
         List<FileMetadata> fileMetadataList = Collections.synchronizedList(new ArrayList<>(100));
-        targetFileList.forEach(target -> {
+        getFileList(targetDir).forEach(target -> {
             try {
                 FileMetadata fileMetadata = new FileMetadata(target).fastHashing();
                 fileMetadataList.add(fileMetadata);
