@@ -2,9 +2,11 @@ package com.xuanchengwei.filemanagementsystem.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.hash.Hashing;
+import com.xuanchengwei.filemanagementsystem.constants.BinaryConstants;
 import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -53,7 +55,7 @@ public class FileMetadataUtils {
 
 
 
-    public FileMetadata fastHashing(File file) throws IOException {
+    public static FileMetadata fastHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
         if(fileMetadata.getMetadataStore().exists()){
             return new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class);
@@ -63,7 +65,47 @@ public class FileMetadataUtils {
     }
 
 
-    public FileMetadata fullHashing(File file) throws IOException {
+
+    private static String calculateEverySegmentTakePieceSha512(File file) throws IOException {
+        final int minNumberOfSegment = 10;
+        final int maxNumberOfSegment = 100;
+        final int piece = (int) BinaryConstants.K;
+        final long segment = Math.max(Math.floorDiv(file.length() + (maxNumberOfSegment * BinaryConstants.M - 1),maxNumberOfSegment * BinaryConstants.M) ,1) * BinaryConstants.M;
+        if(file.length() < segment * minNumberOfSegment){
+            return com.google.common.io.Files.asByteSource(file).hash(Hashing.sha512()).toString();
+        }else {
+            try(FileInputStream fileInputStream = new FileInputStream(file)) {
+                byte[] bytes = new byte[(int) Math.floorDiv(file.length(), segment) * piece];
+                for (int i = 0; (long) (i + 1) * segment < file.length(); i++) {
+                    fileInputStream.getChannel().position(segment * i);
+                    if (fileInputStream.read(bytes, i * piece, piece) != piece) {
+                        throw new IOException("第" + i + "段读取失败");
+                    }
+                }
+                return Hashing.sha512().hashBytes(bytes).toString();
+            }
+        }
+    }
+    public static FileMetadata safetyHashing(File file) throws IOException {
+        FileMetadata fileMetadata = new FileMetadata(file);
+        String everySegmentTakePieceSha512 = calculateEverySegmentTakePieceSha512(file);
+        if(fileMetadata.getMetadataStore().exists()){
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                fileMetadata = objectMapper.readValue(fileMetadata.getMetadataStore(), FileMetadata.class);
+                if(fileMetadata.getEverySegmentTakePieceSha512().equals(everySegmentTakePieceSha512)){
+                    return fileMetadata;
+                }
+            } catch (IOException e) {
+                return fullHashing(file);
+            }
+        }
+        return fullHashing(file);
+    }
+
+
+
+    public static FileMetadata fullHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
         fileMetadata.setMd5(com.google.common.io.Files.asByteSource(file).hash(Hashing.md5()).toString());
         fileMetadata.setSha1(com.google.common.io.Files.asByteSource(file).hash(Hashing.sha1()).toString());
