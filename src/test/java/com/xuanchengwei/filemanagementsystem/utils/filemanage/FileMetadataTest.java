@@ -23,8 +23,6 @@ public class FileMetadataTest {
     @Autowired
     FileMetadataMapper fileMetadataMapper;
 
-//    @Value("${file-management-system.targetDir}")
-//    String targetDirString;
 
     @Test
     public void fileMetadataUtil() throws IOException {
