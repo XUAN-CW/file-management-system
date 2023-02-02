@@ -3,6 +3,7 @@ package com.xuanchengwei.filemanagementsystem.controller;
 
 import com.xuanchengwei.filemanagementsystem.mapper.FileGradeMapper;
 import com.xuanchengwei.filemanagementsystem.entity.VideoInfo;
+import com.xuanchengwei.filemanagementsystem.utils.FileMetadataUtils;
 import com.xuanchengwei.filemanagementsystem.utils.TargetDirUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,7 @@ public class VideoController {
         });
         targetFileList.stream().parallel().forEach(videoInfo -> {
             try {
-                videoInfo.getFileMetadata().fastHashing();
+                videoInfo.setFileMetadata(FileMetadataUtils.fastHashing(videoInfo.getFileMetadata().getFile()));
                 videoInfo.setFileGrade(fileGradeMapper.selectById(videoInfo.getFileMetadata().getSha512()));
             } catch (IOException e) {
                 throw new RuntimeException(e);

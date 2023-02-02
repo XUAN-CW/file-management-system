@@ -43,7 +43,7 @@ public class FileMetadataUtils {
         List<FileMetadata> fileMetadataList = Collections.synchronizedList(new ArrayList<>(100));
         getFileList(targetDir).forEach(target -> {
             try {
-                FileMetadata fileMetadata = new FileMetadata(target).fastHashing();
+                FileMetadata fileMetadata = fullHashing(target);
                 fileMetadataList.add(fileMetadata);
             } catch (IOException e) {
                 System.out.println(target.getAbsolutePath());

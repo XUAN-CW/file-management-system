@@ -33,7 +33,7 @@ public class FileTagTest {
     public void addTagTest() throws IOException {
         for (File target : FileMetadataUtils.getFileList(targetFile)) {
             System.out.println(target.getAbsolutePath());
-            FileMetadata fileMetadata = new FileMetadata().setFileMetadataAbsolutePath(target.getAbsolutePath()).safetyHashing();
+            FileMetadata fileMetadata =  FileMetadataUtils.safetyHashing(target);
             fileMetadataMapper.insert(fileMetadata);
             for (String tag : tagArray) {
                 FileTag fileTag = new FileTag();

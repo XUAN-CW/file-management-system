@@ -33,7 +33,7 @@ public class FileMetadataTest {
         FileMetadataUtils.getFileList(new File("R:\\3D")).stream().parallel().forEach(target -> {
             System.out.println(target.getAbsolutePath());
             try {
-                FileMetadata fileMetadata = new FileMetadata(target).fastHashing();
+                FileMetadata fileMetadata =  FileMetadataUtils.fastHashing(target);
                 fileMetadataList.add(fileMetadata);
             } catch (IOException e) {
                 System.out.println(target.getAbsolutePath());

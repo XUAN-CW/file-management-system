@@ -2,6 +2,7 @@ package com.xuanchengwei.filemanagementsystem.entity.xyplorer;
 
 import com.xuanchengwei.filemanagementsystem.entity.FileGrade;
 import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
+import com.xuanchengwei.filemanagementsystem.utils.FileMetadataUtils;
 import lombok.Data;
 
 import java.io.File;
@@ -23,7 +24,7 @@ public class DataInfo {
     }
 
     public FileMetadata getFileMetadata() throws IOException {
-        return new FileMetadata(getFile()).fastHashing();
+        return FileMetadataUtils.fastHashing(getFile());
     }
 
     public FileGrade getFileGrade() throws IOException {

@@ -37,7 +37,7 @@ public class FileDistinctTargetDirTest {
         FileMetadataUtils.getFileList(targetDir).stream().forEach(target -> {
             System.out.println(target.getAbsolutePath());
             try {
-                FileMetadata fileMetadata = new FileMetadata(target).fastHashing();
+                FileMetadata fileMetadata =  FileMetadataUtils.fastHashing(target);
                 needDistinctFileMetadataList.add(fileMetadata);
                 fileMetadataMapper.insert(fileMetadata);
             } catch (IOException e) {

@@ -6,6 +6,7 @@ import com.xuanchengwei.filemanagementsystem.entity.firefox.FirefoxDownload;
 import com.xuanchengwei.filemanagementsystem.mapper.FileMetadataMapper;
 import com.xuanchengwei.filemanagementsystem.mapper.FirefoxDownloadMapper;
 import com.xuanchengwei.filemanagementsystem.mapper.FirefoxDownloadFirefoxBrowserMapper;
+import com.xuanchengwei.filemanagementsystem.utils.FileMetadataUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,7 +36,7 @@ public class FirefoxUtilsTest {
         Long queryAfter = LocalDateTime.now().minusDays(1).atZone(DateConstants.DEFAULT_ZONE_ID).toInstant().toEpochMilli();
         for (FirefoxDownload firefoxDownload : firefoxDownloadMapper.selectDownloadCompleteBydateAdded(queryAfter)) {
             if(firefoxDownload.getFile().exists()){
-                FileMetadata fileMetadata = new FileMetadata(firefoxDownload.getFile()).safetyHashing();
+                FileMetadata fileMetadata = FileMetadataUtils.safetyHashing(firefoxDownload.getFile());
                 firefoxDownload.setSha512(fileMetadata.getSha512());
                 fileMetadataMapper.insert(fileMetadata);
                 firefoxDownloadManageMapper.insert(firefoxDownload);

@@ -3,6 +3,7 @@ package com.xuanchengwei.filemanagementsystem.controller;
 
 import com.xuanchengwei.filemanagementsystem.mapper.FileGradeMapper;
 import com.xuanchengwei.filemanagementsystem.entity.ImageInfo;
+import com.xuanchengwei.filemanagementsystem.utils.FileMetadataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -50,7 +51,7 @@ public class ImageController {
             public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {
                 if("".equals(path.toFile().getAbsolutePath().toLowerCase().replaceAll(".*.(jpg|jpeg|png|gif|bmp|tiff|tif|svg|webp)",""))){
                     ImageInfo imageInfo = new ImageInfo(path.toFile());
-                    imageInfo.getFileMetadata().fastHashing();
+                    imageInfo.setFileMetadata(FileMetadataUtils.fastHashing(path.toFile()));
                     imageInfo.setFileGrade(fileGradeMapper.selectById(imageInfo.getFileMetadata().getSha512()));
                     targetFileList.add(imageInfo);
                 }
