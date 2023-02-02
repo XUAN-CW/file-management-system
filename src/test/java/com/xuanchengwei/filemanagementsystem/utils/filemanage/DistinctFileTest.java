@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 禤成伟
@@ -29,15 +30,12 @@ public class DistinctFileTest {
     @Test
     public void FileDistinctUtil() throws IOException {
         for (FileMetadata needDistinctFile : FileMetadataUtils.getFileMetadataList(new File("f"))) {
-
             QueryWrapper<FileMetadata> wrapper = new QueryWrapper<>();
             wrapper.eq("sha512",needDistinctFile.getSha512());
-            List<FileMetadata> existsFileMetadataList = fileMetadataMapper.selectList(wrapper);
-
+            List<FileMetadata> existsFileMetadataList = fileMetadataMapper.selectList(wrapper)
+                    .stream().filter(fileMetadata -> fileMetadata.getFile().exists()).toList();
             for (FileMetadata existsFileMetadata : existsFileMetadataList) {
-                if (existsFileMetadata.getFile().exists()
-                        && !needDistinctFile.getFile().getAbsolutePath().equals(existsFileMetadata.getFile().getAbsolutePath())
-                ) {
+                if (needDistinctFile.getFile().getAbsolutePath().equals(existsFileMetadata.getFile().getAbsolutePath())) {
                     System.out.println(existsFileMetadata.getAbsolutePath() +"已存在\t" + needDistinctFile.getFile());
                 }
             }
