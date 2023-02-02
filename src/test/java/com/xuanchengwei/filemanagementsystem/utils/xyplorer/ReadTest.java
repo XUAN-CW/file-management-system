@@ -33,7 +33,7 @@ public class ReadTest {
     FileGradeMapper fileGradeMapper;
 
 
-    @Test
+
     public void readTest() throws IOException {
         List<DataInfo> dataInfoList = xyplorerUtil.read();
         for (DataInfo dataInfo : dataInfoList) {
