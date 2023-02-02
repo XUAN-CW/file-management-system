@@ -91,12 +91,11 @@ public class FileMetadataUtils {
     }
     public static FileMetadata safetyHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
-        String everySegmentTakePieceSha512 = calculateEverySegmentTakePieceSha512(file);
         if(fileMetadata.getMetadataStore().exists()){
             ObjectMapper objectMapper = new ObjectMapper();
             try {
                 fileMetadata = objectMapper.readValue(fileMetadata.getMetadataStore(), FileMetadata.class);
-                if(fileMetadata.getEverySegmentTakePieceSha512().equals(everySegmentTakePieceSha512)){
+                if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
                     return fileMetadata;
                 }
             } catch (IOException e) {
