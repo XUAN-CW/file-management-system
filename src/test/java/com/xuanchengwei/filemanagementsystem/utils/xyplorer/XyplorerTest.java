@@ -35,7 +35,7 @@ public class XyplorerTest {
         List<DataInfo> dataInfoList = xyplorerUtil.read();
         for (DataInfo dataInfo : dataInfoList) {
             FileGrade fileGrade = dataInfo.getFileGrade();
-            if(fileGradeMapper.selectById(fileGrade.getSha512())==null){
+            if(fileGradeMapper.selectById(fileGrade.getSha512()) == null){
                 fileGradeMapper.insert(fileGrade);
             }else {
                 fileGradeMapper.updateById(fileGrade);
