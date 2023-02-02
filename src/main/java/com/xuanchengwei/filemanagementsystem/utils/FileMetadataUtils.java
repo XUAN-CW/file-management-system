@@ -38,7 +38,6 @@ public class FileMetadataUtils {
     }
 
     public static List<FileMetadata> getFileMetadataList(File targetDir) throws IOException {
-
         List<FileMetadata> fileMetadataList = Collections.synchronizedList(new ArrayList<>(100));
         getFileList(targetDir).forEach(target -> {
             try {
