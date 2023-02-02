@@ -34,7 +34,7 @@ public class FileMetadataTest {
                 FileMetadata fileMetadata =  FileMetadataUtils.safetyHashing(target);
                 fileMetadataList.add(fileMetadata);
             } catch (IOException e) {
-                System.out.println(target.getAbsolutePath());
+                System.err.println(target.getAbsolutePath());
                 e.printStackTrace();
             }
         });
