@@ -16,11 +16,8 @@ import java.nio.file.Files;
  */
 public class BtFileTidy {
 
-    File btFileDir = new File("metadata/btFile");
-
-
-    @Test
-    public void move() throws IOException {
+    public static void main(String[] args) throws IOException {
+        File btFileDir = new File("metadata/btFile");
         File[] btFiles = btFileDir.listFiles(file -> file.getName().endsWith(".torrent"));
         for (File btFile : btFiles) {
             System.out.println(btFile.getAbsolutePath());
