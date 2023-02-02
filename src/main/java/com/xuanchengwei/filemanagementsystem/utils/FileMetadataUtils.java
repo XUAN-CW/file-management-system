@@ -85,13 +85,15 @@ public class FileMetadataUtils {
     }
     public static FileMetadata safetyHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
-        if(fileMetadata.getMetadataStore().exists()){
+        try {
             ObjectMapper objectMapper = new ObjectMapper();
             fileMetadata = objectMapper.readValue(fileMetadata.getMetadataStore(), FileMetadata.class);
             if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
                 return fileMetadata;
             }
-
+        }catch (Exception e){
+            e.printStackTrace();
+            return fullHashing(file);
         }
         return fullHashing(file);
     }
