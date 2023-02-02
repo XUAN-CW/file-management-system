@@ -26,7 +26,7 @@ public class FileMetadataTest {
 
     @Test
     public void fileMetadataUtil() throws IOException {
-        List<FileMetadata> fileMetadataList = Collections.synchronizedList( new ArrayList<>(10000));
+        List<FileMetadata> fileMetadataList = Collections.synchronizedList(new ArrayList<>(10000));
 
         FileMetadataUtils.getFileList(new File("R:\\3D")).stream().parallel().forEach(target -> {
             System.out.println(target.getAbsolutePath());
