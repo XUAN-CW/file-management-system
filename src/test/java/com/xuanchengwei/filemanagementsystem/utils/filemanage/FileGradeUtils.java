@@ -32,7 +32,7 @@ public class FileGradeUtils {
 
 
         for (File target : FileMetadataUtils.getFileList(targetFile)) {
-            FileMetadata fileMetadata = new FileMetadata().setFileMetadataAbsolutePath(target.getAbsolutePath()).safetyHashing();
+            FileMetadata fileMetadata = FileMetadataUtils.safetyHashing(target);
             FileGrade fileGrade = new FileGrade();
             fileGrade.setGrade(-1);
             fileGrade.setSha512(fileMetadata.getSha512());
@@ -54,7 +54,7 @@ public class FileGradeUtils {
 
 
         for (File target : FileMetadataUtils.getFileList(targetFile)) {
-            FileMetadata fileMetadata = new FileMetadata().setFileMetadataAbsolutePath(target.getAbsolutePath()).safetyHashing();
+            FileMetadata fileMetadata =  FileMetadataUtils.safetyHashing(target);
             FileGrade fileGrade = new FileGrade();
             fileGrade.setGrade(3);
             fileGrade.setSha512(fileMetadata.getSha512());
