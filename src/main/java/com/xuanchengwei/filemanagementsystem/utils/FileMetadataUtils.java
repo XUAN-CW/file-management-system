@@ -61,6 +61,7 @@ public class FileMetadataUtils {
             try {
                 return new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class);
             }catch (Exception e){
+                e.printStackTrace();
                 return fullHashing(file);
             }
         }
@@ -99,6 +100,7 @@ public class FileMetadataUtils {
                     return fileMetadata;
                 }
             } catch (IOException e) {
+                e.printStackTrace();
                 return fullHashing(file);
             }
         }
