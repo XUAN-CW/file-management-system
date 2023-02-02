@@ -86,9 +86,14 @@ public class FileMetadataUtils {
         FileMetadata fileMetadata = new FileMetadata(file);
         if(fileMetadata.getMetadataStore().exists()){
             ObjectMapper objectMapper = new ObjectMapper();
-            fileMetadata = objectMapper.readValue(fileMetadata.getMetadataStore(), FileMetadata.class);
-            if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
-                return fileMetadata;
+            try {
+                fileMetadata = objectMapper.readValue(fileMetadata.getMetadataStore(), FileMetadata.class);
+                if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
+                    return fileMetadata;
+                }
+            }catch (IOException e){
+                e.printStackTrace();
+                return fullHashing(file);
             }
         }
         return fullHashing(file);
