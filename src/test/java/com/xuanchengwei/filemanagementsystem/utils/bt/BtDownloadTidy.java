@@ -34,7 +34,6 @@ public class BtDownloadTidy {
                 }
                 File moveTo = new File(btDownload.getAbsolutePath() +
                         "_"+torrent.getTorrentId().toString()+File.separator+torrent.getName());
-                moveTo.getParentFile().mkdirs();
                 if(btDownload.isDirectory()){
                     FileUtils.moveDirectory(btDownload, moveTo);
                 }else {
