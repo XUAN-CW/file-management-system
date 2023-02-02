@@ -1,6 +1,8 @@
 package com.xuanchengwei.filemanagementsystem.utils.filemanage;
 
 import com.xuanchengwei.filemanagementsystem.utils.FileMetadataUtils;
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -14,9 +16,10 @@ public class DeleteEmptyDirectories {
                     deleteEmptyDirectories(file);
                 }
             }
-            System.out.println(directory.list().length + "  " +directory.getAbsolutePath());
+
             if (FileMetadataUtils.getFileList(directory).size() == 0) {
-                directory.delete();
+                System.out.println(directory.getAbsolutePath());
+                FileUtils.deleteDirectory(directory);
             }
         }
     }
