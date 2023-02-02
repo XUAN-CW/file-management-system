@@ -22,7 +22,7 @@ public class DeleteEmptyDirectories {
     }
 
     public static void main(String[] args) throws IOException {
-        File rootDirectory = new File("D:\\qbit_download_complete\\qbit_download_check_5");
+        File rootDirectory = new File("Y:\\qbit\\qbit_download");
         deleteEmptyDirectories(rootDirectory);
     }
 }
