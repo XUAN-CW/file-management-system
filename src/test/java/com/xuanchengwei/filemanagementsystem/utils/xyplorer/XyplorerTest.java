@@ -4,7 +4,6 @@ import com.xuanchengwei.filemanagementsystem.entity.FileGrade;
 import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
 import com.xuanchengwei.filemanagementsystem.entity.xyplorer.DataInfo;
 import com.xuanchengwei.filemanagementsystem.mapper.FileGradeMapper;
-import com.xuanchengwei.filemanagementsystem.service.FileGradeService;
 import com.xuanchengwei.filemanagementsystem.utils.FileMetadataUtils;
 import com.xuanchengwei.filemanagementsystem.utils.TargetDirUtils;
 import com.xuanchengwei.filemanagementsystem.utils.XyplorerUtil;
@@ -21,13 +20,11 @@ import java.util.List;
  * @date 2023-01-07 - 10:02
  */
 @SpringBootTest
-public class ReadTest {
+public class XyplorerTest {
 
     @Autowired
     XyplorerUtil xyplorerUtil;
 
-    @Autowired
-    FileGradeService fileGradeService;
 
     @Autowired
     FileGradeMapper fileGradeMapper;
@@ -38,7 +35,11 @@ public class ReadTest {
         List<DataInfo> dataInfoList = xyplorerUtil.read();
         for (DataInfo dataInfo : dataInfoList) {
             FileGrade fileGrade = dataInfo.getFileGrade();
-            fileGradeService.insertOrUpdate(fileGrade);
+            if(fileGradeMapper.selectById(fileGrade.getSha512())==null){
+                fileGradeMapper.insert(fileGrade);
+            }else {
+                fileGradeMapper.updateById(fileGrade);
+            }
         }
     }
 

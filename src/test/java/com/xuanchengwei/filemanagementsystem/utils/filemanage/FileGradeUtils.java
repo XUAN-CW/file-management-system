@@ -1,6 +1,5 @@
 package com.xuanchengwei.filemanagementsystem.utils.filemanage;
 
-import com.xuanchengwei.filemanagementsystem.controller.FileGradeController;
 import com.xuanchengwei.filemanagementsystem.entity.FileGrade;
 import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
 import com.xuanchengwei.filemanagementsystem.mapper.FileGradeMapper;
@@ -12,8 +11,6 @@ import org.springframework.jdbc.UncategorizedSQLException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author 禤成伟
