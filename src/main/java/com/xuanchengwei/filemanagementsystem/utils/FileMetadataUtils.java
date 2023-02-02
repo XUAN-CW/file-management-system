@@ -105,6 +105,7 @@ public class FileMetadataUtils {
         fileMetadata.setSha256(com.google.common.io.Files.asByteSource(file).hash(Hashing.sha256()).toString());
         fileMetadata.setSha384(com.google.common.io.Files.asByteSource(file).hash(Hashing.sha384()).toString());
         fileMetadata.setSha512(com.google.common.io.Files.asByteSource(file).hash(Hashing.sha512()).toString());
+        fileMetadata.setEverySegmentTakePieceSha512(calculateEverySegmentTakePieceSha512(file));
 
         ObjectMapper objectMapper = new ObjectMapper();
         if(fileMetadata.getMetadataStore().delete() || !fileMetadata.getMetadataStore().exists()){
