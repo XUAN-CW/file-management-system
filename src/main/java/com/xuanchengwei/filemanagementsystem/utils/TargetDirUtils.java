@@ -41,39 +41,4 @@ public class TargetDirUtils {
         return new File(targetDir.getAbsolutePath() + ".file-management-system.deletable");
     }
 
-    public static List<File> getFileList(File targetFile) throws IOException {
-        List<File> targetFileList = new ArrayList<>();
-        if(targetFile.isFile()){
-            targetFileList.add(targetFile);
-        }else {
-            Files.walkFileTree(targetFile.toPath(), new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                    if(!file.toFile().getAbsolutePath().endsWith(FileMetadata.SUFFIX)){
-                        targetFileList.add(file.toFile());
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        }
-        return targetFileList;
-    }
-
-    public static List<File> getFileList() throws IOException {
-        List<File> targetFileList = new ArrayList<>();
-        if(targetDir.isFile()){
-            targetFileList.add(targetDir);
-        }else {
-            Files.walkFileTree(targetDir.toPath(), new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                    if(!file.toFile().getAbsolutePath().endsWith(FileMetadata.SUFFIX)){
-                        targetFileList.add(file.toFile());
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        }
-        return targetFileList;
-    }
 }
