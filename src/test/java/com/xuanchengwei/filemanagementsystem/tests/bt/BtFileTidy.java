@@ -1,4 +1,4 @@
-package com.xuanchengwei.filemanagementsystem.utils.bt;
+package com.xuanchengwei.filemanagementsystem.tests.bt;
 
 import bt.metainfo.MetadataService;
 import bt.metainfo.Torrent;
