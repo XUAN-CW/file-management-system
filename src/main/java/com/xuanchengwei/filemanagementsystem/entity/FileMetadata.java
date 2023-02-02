@@ -66,24 +66,24 @@ public class FileMetadata implements Serializable {
         return this;
     }
 
-    public FileMetadata fastHashing() throws IOException {
-        if(metadataStore.exists()){
-            ObjectMapper objectMapper = new ObjectMapper();
-            FileMetadata fileMetadata = objectMapper.readValue(metadataStore,FileMetadata.class);
-            if(fileMetadata != null){
-                this.everySegmentTakePieceSha512 = fileMetadata.getEverySegmentTakePieceSha512();
-                this.md5 = fileMetadata.getMd5();
-                this.sha1 = fileMetadata.getSha1();
-                this.sha256 = fileMetadata.getSha256();
-                this.sha384 = fileMetadata.getSha384();
-                this.sha512 = fileMetadata.getSha512();
-            }
-        }else {
-            fullHashing();
-        }
-
-        return this;
-    }
+//    public FileMetadata fastHashing() throws IOException {
+//        if(metadataStore.exists()){
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            FileMetadata fileMetadata = objectMapper.readValue(metadataStore,FileMetadata.class);
+//            if(fileMetadata != null){
+//                this.everySegmentTakePieceSha512 = fileMetadata.getEverySegmentTakePieceSha512();
+//                this.md5 = fileMetadata.getMd5();
+//                this.sha1 = fileMetadata.getSha1();
+//                this.sha256 = fileMetadata.getSha256();
+//                this.sha384 = fileMetadata.getSha384();
+//                this.sha512 = fileMetadata.getSha512();
+//            }
+//        }else {
+//            fullHashing();
+//        }
+//
+//        return this;
+//    }
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
@@ -96,70 +96,70 @@ public class FileMetadata implements Serializable {
      */
     private String everySegmentTakePieceSha512;
 
-    private String calculateEverySegmentTakePieceSha512() throws IOException {
-        final int minNumberOfSegment = 10;
-        final int maxNumberOfSegment = 100;
-        final int piece = (int) BinaryConstants.K;
-        final long segment = Math.max(Math.floorDiv(file.length() + (maxNumberOfSegment * BinaryConstants.M - 1),maxNumberOfSegment * BinaryConstants.M) ,1) * BinaryConstants.M;
-        if(file.length() < segment * minNumberOfSegment){
-            this.sha512 = Files.asByteSource(file).hash(Hashing.sha512()).toString();
-            return this.sha512;
-        }else {
-            try(FileInputStream fileInputStream = new FileInputStream(file)) {
-                byte[] bytes = new byte[(int) Math.floorDiv(file.length(), segment) * piece];
-                for (int i = 0; (long) (i + 1) * segment < file.length(); i++) {
-                    fileInputStream.getChannel().position(segment * i);
-                    if (fileInputStream.read(bytes, i * piece, piece) != piece) {
-                        throw new IOException("第" + i + "段读取失败");
-                    }
-                }
-                return Hashing.sha512().hashBytes(bytes).toString();
-            }
-        }
-    }
-    public FileMetadata safetyHashing() throws IOException {
-        this.everySegmentTakePieceSha512 = calculateEverySegmentTakePieceSha512();
-        if(metadataStore.exists()){
-            ObjectMapper objectMapper = new ObjectMapper();
-            FileMetadata fileMetadata = null;
-            try {
-                fileMetadata = objectMapper.readValue(metadataStore, FileMetadata.class);
-            } catch (IOException e) {
-                fullHashing();
-                return this;
-            }
-            if(this.everySegmentTakePieceSha512.equals(fileMetadata.getEverySegmentTakePieceSha512())){
-                this.md5 = fileMetadata.getMd5();
-                this.sha1 = fileMetadata.getSha1();
-                this.sha256 = fileMetadata.getSha256();
-                this.sha384 = fileMetadata.getSha384();
-                this.sha512 = fileMetadata.getSha512();
-            }else {
-                fullHashing();
-            }
-        }else {
-            fullHashing();
-        }
-        return this;
-    }
-
-    public FileMetadata fullHashing() throws IOException {
-        this.everySegmentTakePieceSha512 = calculateEverySegmentTakePieceSha512();
-        this.md5 = Files.asByteSource(file).hash(Hashing.md5()).toString();
-        this.sha1 = Files.asByteSource(file).hash(Hashing.sha1()).toString();
-        this.sha256 = Files.asByteSource(file).hash(Hashing.sha256()).toString();
-        this.sha384 = Files.asByteSource(file).hash(Hashing.sha384()).toString();
-        this.sha512 = Files.asByteSource(file).hash(Hashing.sha512()).toString();
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        if(metadataStore.delete() || !metadataStore.exists()){
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(metadataStore,this);
-            metadataStore.setReadOnly();
-            if(System.getProperty("os.name").toLowerCase().contains("windows")){
-                java.nio.file.Files.setAttribute(metadataStore.toPath(), "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
-            }
-        }
-        return this;
-    }
+//    private String calculateEverySegmentTakePieceSha512() throws IOException {
+//        final int minNumberOfSegment = 10;
+//        final int maxNumberOfSegment = 100;
+//        final int piece = (int) BinaryConstants.K;
+//        final long segment = Math.max(Math.floorDiv(file.length() + (maxNumberOfSegment * BinaryConstants.M - 1),maxNumberOfSegment * BinaryConstants.M) ,1) * BinaryConstants.M;
+//        if(file.length() < segment * minNumberOfSegment){
+//            this.sha512 = Files.asByteSource(file).hash(Hashing.sha512()).toString();
+//            return this.sha512;
+//        }else {
+//            try(FileInputStream fileInputStream = new FileInputStream(file)) {
+//                byte[] bytes = new byte[(int) Math.floorDiv(file.length(), segment) * piece];
+//                for (int i = 0; (long) (i + 1) * segment < file.length(); i++) {
+//                    fileInputStream.getChannel().position(segment * i);
+//                    if (fileInputStream.read(bytes, i * piece, piece) != piece) {
+//                        throw new IOException("第" + i + "段读取失败");
+//                    }
+//                }
+//                return Hashing.sha512().hashBytes(bytes).toString();
+//            }
+//        }
+//    }
+//    public FileMetadata safetyHashing() throws IOException {
+//        this.everySegmentTakePieceSha512 = calculateEverySegmentTakePieceSha512();
+//        if(metadataStore.exists()){
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            FileMetadata fileMetadata = null;
+//            try {
+//                fileMetadata = objectMapper.readValue(metadataStore, FileMetadata.class);
+//            } catch (IOException e) {
+//                fullHashing();
+//                return this;
+//            }
+//            if(this.everySegmentTakePieceSha512.equals(fileMetadata.getEverySegmentTakePieceSha512())){
+//                this.md5 = fileMetadata.getMd5();
+//                this.sha1 = fileMetadata.getSha1();
+//                this.sha256 = fileMetadata.getSha256();
+//                this.sha384 = fileMetadata.getSha384();
+//                this.sha512 = fileMetadata.getSha512();
+//            }else {
+//                fullHashing();
+//            }
+//        }else {
+//            fullHashing();
+//        }
+//        return this;
+//    }
+//
+//    public FileMetadata fullHashing() throws IOException {
+//        this.everySegmentTakePieceSha512 = calculateEverySegmentTakePieceSha512();
+//        this.md5 = Files.asByteSource(file).hash(Hashing.md5()).toString();
+//        this.sha1 = Files.asByteSource(file).hash(Hashing.sha1()).toString();
+//        this.sha256 = Files.asByteSource(file).hash(Hashing.sha256()).toString();
+//        this.sha384 = Files.asByteSource(file).hash(Hashing.sha384()).toString();
+//        this.sha512 = Files.asByteSource(file).hash(Hashing.sha512()).toString();
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        if(metadataStore.delete() || !metadataStore.exists()){
+//            objectMapper.writerWithDefaultPrettyPrinter().writeValue(metadataStore,this);
+//            metadataStore.setReadOnly();
+//            if(System.getProperty("os.name").toLowerCase().contains("windows")){
+//                java.nio.file.Files.setAttribute(metadataStore.toPath(), "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
+//            }
+//        }
+//        return this;
+//    }
 
 }
