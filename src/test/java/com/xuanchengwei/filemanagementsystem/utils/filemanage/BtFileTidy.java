@@ -25,7 +25,8 @@ public class BtFileTidy {
             InputStream inputStream = Files.newInputStream(btFile.toPath());
             Torrent torrent = metadataService.fromInputStream(inputStream);
             File moveTo = new File(btFileDir.getAbsolutePath()+File.separator +
-                    torrent.getTorrentId().toString().charAt(0) + File.separator +torrent.getTorrentId().toString()+".torrent");
+                    torrent.getTorrentId().toString().charAt(0) +
+                    File.separator +torrent.getTorrentId().toString().toLowerCase()+".torrent");
             System.out.println(moveTo.getAbsolutePath());
             if(!moveTo.exists()){
                 FileUtils.moveFile(btFile,moveTo);
