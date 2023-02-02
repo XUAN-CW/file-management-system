@@ -40,7 +40,6 @@ public class FileMetadata implements Serializable {
     private transient File file;
 
     @Setter(AccessLevel.NONE)
-    @Getter(AccessLevel.NONE)
     private transient File metadataStore;
 
 
@@ -48,15 +47,10 @@ public class FileMetadata implements Serializable {
     private String fileName;
     private Long fileLength;
 
-    @Setter(AccessLevel.NONE)
     private String md5;
-    @Setter(AccessLevel.NONE)
     private String sha1;
-    @Setter(AccessLevel.NONE)
     private String sha256;
-    @Setter(AccessLevel.NONE)
     private String sha384;
-    @Setter(AccessLevel.NONE)
     private String sha512;
 
     public File getFile() {
