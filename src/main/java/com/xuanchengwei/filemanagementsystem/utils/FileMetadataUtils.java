@@ -99,8 +99,6 @@ public class FileMetadataUtils {
         return fullHashing(file);
     }
 
-
-
     public static FileMetadata fullHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
         fileMetadata.setMd5(com.google.common.io.Files.asByteSource(file).hash(Hashing.md5()).toString());
