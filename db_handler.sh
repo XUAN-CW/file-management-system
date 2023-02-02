@@ -10,3 +10,4 @@ sqlite3 file-management-system.dump.db ".dump" > dump.sql
 sqlite3 file-management-system$(date "+%Y%m%d%H%M%S").db < dump.sql
 
 rm -rf dump.sql delete_old_table.sql file-management-system.dump.db
+
