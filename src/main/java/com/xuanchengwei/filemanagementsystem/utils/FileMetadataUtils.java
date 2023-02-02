@@ -7,6 +7,7 @@ import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -91,7 +92,7 @@ public class FileMetadataUtils {
                 if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
                     return fileMetadata;
                 }
-            }catch (IOException e){
+            }catch (FileNotFoundException e){
                 return fullHashing(file);
             }
         }
