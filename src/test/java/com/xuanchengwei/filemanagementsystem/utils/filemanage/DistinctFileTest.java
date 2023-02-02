@@ -36,7 +36,7 @@ public class DistinctFileTest {
                     .stream().filter(fileMetadata -> fileMetadata.getFile().exists()).toList();
             for (FileMetadata existsFileMetadata : existsFileMetadataList) {
                 if (needDistinctFile.getFile().getAbsolutePath().equals(existsFileMetadata.getFile().getAbsolutePath())) {
-                    System.out.println(existsFileMetadata.getAbsolutePath() +"已存在");
+                    System.out.println(existsFileMetadata.getAbsolutePath() +"\t已存在");
                     System.out.println(needDistinctFile.getFile());
                 }
             }
