@@ -57,10 +57,7 @@ public class FileMetadataUtils {
 
     public static FileMetadata fastHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
-        if(fileMetadata.getMetadataStore().exists()){
-            return new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class);
-        }
-        return fullHashing(file);
+        return new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class);
     }
 
 
