@@ -10,6 +10,6 @@ for table_name in $(sqlite3 file-management-system.db ".tables"); do
   for i in $(seq 0 $sql_file_number); do
     offset=$((i * ${maximum_rows}))
     limit=$((offset + ${maximum_rows}))
-    sqlite3 file-management-system.db ".mode insert" ".once ${table_name}_${i}.sql" "SELECT * FROM ${table_name} LIMIT ${maximum_rows} OFFSET ${offset};"
+    sqlite3 file-management-system.db ".mode insert" "SELECT * FROM ${table_name} LIMIT ${maximum_rows} OFFSET ${offset};" > "${table_name}_${i}.sql"
   done
 done
