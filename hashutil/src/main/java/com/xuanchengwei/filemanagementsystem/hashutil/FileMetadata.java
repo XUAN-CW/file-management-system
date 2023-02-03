@@ -34,8 +34,8 @@ public class FileMetadata implements Serializable {
         this.fileLength = file.length();
     }
 
-    public static final String SUFFIX = ".file-management-system.java.com.xuanchengwei.filemanagementsystem.FileMetadata.json";
-
+    public static final String SUFFIX = ".file-management-system.FileMetadata.json";
+    
     @Setter(AccessLevel.NONE)
     private transient File file;
 
