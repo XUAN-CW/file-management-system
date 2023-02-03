@@ -37,7 +37,7 @@ public class DistinctFileTest {
                             && !needDistinctFile.getFile().getAbsolutePath().equals(fileMetadata.getFile().getAbsolutePath()))
                     .toList();
             if(sameFileMetadataList.size() != 0){
-                // 过滤完了还不等于零，说明这是重复文件
+                // 过滤完了还不等于零，说明已经存在相同文件
                 System.out.println(needDistinctFile.getAbsolutePath());
             }else {
                 System.out.println();
