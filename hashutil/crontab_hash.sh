@@ -1,14 +1,3 @@
-
-docker image rm hashutil:1.0
-docker build -t hashutil:1.0 .
-
-docker run -d \
-  --name hashutil \
-  -v /Users/xuanchengwei/Desktop/test-file/20230203145655:/hash/path/20230203145655 \
-  -v /Users/xuanchengwei/Desktop/test-file/20230203145652:/hash/path/20230203145652 \
-   hashutil:1.0
-
-
 # Open the cron file
 crontab -e
 # 写入下面的任务
