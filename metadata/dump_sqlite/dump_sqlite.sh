@@ -2,8 +2,8 @@ maximum_rows=100
 
 for table_name in $(sqlite3 file-management-system.db ".tables"); do
    table_rows=$(sqlite3 file-management-system.db "SELECT count(*) FROM ${table_name};")
-   result=$(($table_rows / $maximum_rows))
-   echo "${table_name}  ${table_rows}"
+   sql_file_number=$(($table_rows / $maximum_rows))
+   echo "${table_name}  ${table_rows} ${sql_file_number}"
   for i in $(seq 0 1); do
     offset=$((i*1000000))
     limit=$((offset+1000000))
