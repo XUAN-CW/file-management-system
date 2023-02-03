@@ -39,7 +39,7 @@ public class DistinctFileTest {
             if(existsFileMetadataList.size() == 0){
                 System.out.println(needDistinctFile);
             }else {
-                System.out.println("");
+                System.out.println();
             }
         }
     }
