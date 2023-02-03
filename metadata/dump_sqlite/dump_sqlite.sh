@@ -9,7 +9,7 @@ for table_name in $(sqlite3 file-management-system.db ".tables"); do
 #    echo "${table_name} 导出 ${table_rows} 行"
   fi
    sql_file_number=$(($table_rows / $maximum_rows))
-   echo "${table_name} 表 ${table_rows} ${sql_file_number}"
+   echo "${table_name} 表\t 导出 ${table_rows} 行，共 $((sql_file_number + 1)) 个文件"
   for i in $(seq 0 $sql_file_number); do
     offset=$((i * ${maximum_rows}))
     limit=$((offset + ${maximum_rows}))
