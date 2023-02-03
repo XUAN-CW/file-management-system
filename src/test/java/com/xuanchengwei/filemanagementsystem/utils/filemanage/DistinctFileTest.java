@@ -33,7 +33,8 @@ public class DistinctFileTest {
             QueryWrapper<FileMetadata> wrapper = new QueryWrapper<>();
             wrapper.eq("sha512",needDistinctFile.getSha512());
             List<FileMetadata> existsFileMetadataList = fileMetadataMapper.selectList(wrapper).stream()
-                    .filter(fileMetadata -> fileMetadata.getFile().exists())
+                    .filter(fileMetadata -> fileMetadata.getFile().exists()
+                            && !needDistinctFile.getFile().getAbsolutePath().equals(fileMetadata.getFile().getAbsolutePath()))
                     .toList();
             for (FileMetadata existsFileMetadata : existsFileMetadataList) {
                 if (!needDistinctFile.getFile().getAbsolutePath().equals(existsFileMetadata.getFile().getAbsolutePath())) {
