@@ -69,13 +69,14 @@ public class FileMetadata implements Serializable {
      */
     private String everySegmentTakePieceSha512;
 
-    public void copyHash(FileMetadata fileMetadata){
+    public FileMetadata copyHashFromFileMetadata(FileMetadata fileMetadata){
         this.md5 = fileMetadata.getMd5();
         this.sha1 = fileMetadata.getSha1();
         this.sha256 = fileMetadata.getSha256();
         this.sha384 = fileMetadata.getSha384();
         this.sha512 = fileMetadata.getSha512();
         this.everySegmentTakePieceSha512 = fileMetadata.getEverySegmentTakePieceSha512();
+        return this;
     }
 
 }
