@@ -90,8 +90,7 @@ public class FileMetadataUtils {
     public static FileMetadata safetyHashing(File file) throws IOException {
         try {
             FileMetadata fileMetadata = new FileMetadata(file);
-            ObjectMapper objectMapper = new ObjectMapper();
-            fileMetadata.setHashByFileMetadata(objectMapper.readValue(fileMetadata.getMetadataStore(), FileMetadata.class));
+            fileMetadata.setHashByFileMetadata(new ObjectMapper().readValue(fileMetadata.getMetadataStore(), FileMetadata.class));
             if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
                 return fileMetadata;
             }
