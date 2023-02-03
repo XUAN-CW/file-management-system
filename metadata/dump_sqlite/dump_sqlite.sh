@@ -1,6 +1,6 @@
 for table_name in $(sqlite3 file-management-system.db ".tables"); do
    a=$(sqlite3 file-management-system.db "SELECT count(*) FROM ${table_name};")
-   echo $a
+   echo "${table_name}  ${a}"
   for i in $(seq 0 1); do
     offset=$((i*1000000))
     limit=$((offset+1000000))
