@@ -7,7 +7,6 @@ import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -59,7 +58,7 @@ public class FileMetadataUtils {
     public static FileMetadata fastHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
         try {
-            return fileMetadata.setHashByFileMetadata(new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class));
+            return fileMetadata.copyHashFromFileMetadata(new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class));
         }catch (Exception e){
             return fullHashing(file);
         }
@@ -90,7 +89,7 @@ public class FileMetadataUtils {
     public static FileMetadata safetyHashing(File file) throws IOException {
         try {
             FileMetadata fileMetadata = new FileMetadata(file);
-            fileMetadata.setHashByFileMetadata(new ObjectMapper().readValue(fileMetadata.getMetadataStore(), FileMetadata.class));
+            fileMetadata.copyHashFromFileMetadata(new ObjectMapper().readValue(fileMetadata.getMetadataStore(), FileMetadata.class));
             if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
                 return fileMetadata;
             }

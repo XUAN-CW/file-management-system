@@ -5,16 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.LinkOption;
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.hash.Hashing;
-import com.google.common.io.Files;
-import com.xuanchengwei.filemanagementsystem.constants.BinaryConstants;
 import lombok.*;
 
 /**
@@ -73,7 +67,7 @@ public class FileMetadata implements Serializable {
      */
     private String everySegmentTakePieceSha512;
 
-    public FileMetadata setHashByFileMetadata(FileMetadata fileMetadata){
+    public FileMetadata copyHashFromFileMetadata(FileMetadata fileMetadata){
         this.md5 = fileMetadata.getMd5();
         this.sha1 = fileMetadata.getSha1();
         this.sha256 = fileMetadata.getSha256();
