@@ -36,7 +36,7 @@ public class DistinctFileTest {
                     .filter(fileMetadata -> fileMetadata.getFile().exists()
                             && !needDistinctFile.getFile().getAbsolutePath().equals(fileMetadata.getFile().getAbsolutePath()))
                     .toList();
-            if(existsFileMetadataList.size() == 0){
+            if(existsFileMetadataList.size() != 0){
                 System.out.println(needDistinctFile.getAbsolutePath());
             }else {
                 System.out.println();
