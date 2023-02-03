@@ -1,5 +1,5 @@
-source ~/.bash_profile
-mvn clean package
+#source ~/.bash_profile
+#mvn clean package
 
 docker image rm hashutil:1.0
 docker build -t hashutil:1.0 .
