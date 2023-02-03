@@ -89,7 +89,6 @@ public class FileMetadataUtils {
                 return fileMetadata;
             }
         }catch (Exception e){
-            e.printStackTrace();
             return fullHashing(file);
         }
         return fullHashing(file);
