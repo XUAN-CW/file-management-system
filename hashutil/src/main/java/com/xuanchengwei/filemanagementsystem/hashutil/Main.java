@@ -8,7 +8,7 @@ public class Main {
         FileMetadataUtils.getFileList(new File("/hash/path")).stream().parallel().forEach(target -> {
             System.out.println(target.getAbsolutePath());
             try {
-                FileMetadataUtils.safetyHashing(target);
+                FileMetadataUtils.fastHashing(target);
             } catch (Exception e) {
                 System.err.println(target.getAbsolutePath());
                 e.printStackTrace();
