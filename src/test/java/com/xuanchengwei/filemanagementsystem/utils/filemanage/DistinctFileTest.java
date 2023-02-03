@@ -36,11 +36,10 @@ public class DistinctFileTest {
                     .filter(fileMetadata -> fileMetadata.getFile().exists()
                             && !needDistinctFile.getFile().getAbsolutePath().equals(fileMetadata.getFile().getAbsolutePath()))
                     .toList();
-            for (FileMetadata existsFileMetadata : existsFileMetadataList) {
-                if (!needDistinctFile.getFile().getAbsolutePath().equals(existsFileMetadata.getFile().getAbsolutePath())) {
-                    System.out.println(existsFileMetadata.getAbsolutePath() +"\t已存在");
-                    System.out.println(needDistinctFile.getFile());
-                }
+            if(existsFileMetadataList.size() == 0){
+                System.out.println(needDistinctFile);
+            }else {
+                System.out.println("");
             }
         }
     }
