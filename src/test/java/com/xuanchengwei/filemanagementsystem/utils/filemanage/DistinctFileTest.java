@@ -32,11 +32,11 @@ public class DistinctFileTest {
         for (FileMetadata needDistinctFile : FileMetadataUtils.getFileMetadataList(new File("dir"))) {
             QueryWrapper<FileMetadata> wrapper = new QueryWrapper<>();
             wrapper.eq("sha512",needDistinctFile.getSha512());
-            List<FileMetadata> existsFileMetadataList = fileMetadataMapper.selectList(wrapper).stream()
+            List<FileMetadata> sameFileMetadataList = fileMetadataMapper.selectList(wrapper).stream()
                     .filter(fileMetadata -> fileMetadata.getFile().exists()
                             && !needDistinctFile.getFile().getAbsolutePath().equals(fileMetadata.getFile().getAbsolutePath()))
                     .toList();
-            if(existsFileMetadataList.size() != 0){
+            if(sameFileMetadataList.size() != 0){
                 // 过滤完了还不等于零，说明这是重复文件
                 System.out.println(needDistinctFile.getAbsolutePath());
             }else {
