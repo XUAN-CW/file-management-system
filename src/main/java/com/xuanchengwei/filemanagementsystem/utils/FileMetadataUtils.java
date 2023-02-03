@@ -58,7 +58,7 @@ public class FileMetadataUtils {
 
     public static FileMetadata fastHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
-        return new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class);
+        return fileMetadata.setHashByFileMetadata(new ObjectMapper().readValue(fileMetadata.getMetadataStore(),FileMetadata.class));
     }
 
 
