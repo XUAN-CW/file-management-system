@@ -5,8 +5,8 @@ for table_name in $(sqlite3 file-management-system.db ".tables"); do
   if [ $table_rows -eq 0 ]; then
     continue
   fi
-   sql_file_number=$(($table_rows / $maximum_rows))
-    printf "%-30s 表导出 %-8s 行，共 %-4s 个文件\n" ${table_name} ${table_rows} $(($sql_file_number + 1))
+  sql_file_number=$(($table_rows / $maximum_rows))
+  printf "%-30s 表导出 %-8s 行，共 %-4s 个文件\n" ${table_name} ${table_rows} $(($sql_file_number + 1))
   for i in $(seq 0 $sql_file_number); do
     offset=$((i * ${maximum_rows}))
     limit=$((offset + ${maximum_rows}))
