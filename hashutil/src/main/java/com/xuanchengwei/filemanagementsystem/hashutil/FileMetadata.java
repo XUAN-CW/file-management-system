@@ -35,7 +35,7 @@ public class FileMetadata implements Serializable {
     }
 
     public static final String SUFFIX = ".file-management-system.FileMetadata.json";
-    
+
     @Setter(AccessLevel.NONE)
     private transient File file;
 
