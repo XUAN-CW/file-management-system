@@ -30,9 +30,9 @@ public class DistinctFileTest {
     @Test
     public void FileDistinctUtil() throws IOException {
         for (FileMetadata needDistinctFile : FileMetadataUtils.getFileMetadataList(new File("dir"))) {
-            QueryWrapper<FileMetadata> wrapper = new QueryWrapper<>();
-            wrapper.eq("sha512",needDistinctFile.getSha512());
-            List<FileMetadata> sameFileMetadataList = fileMetadataMapper.selectList(wrapper).stream()
+            QueryWrapper<FileMetadata> sameFileQueryWrapper = new QueryWrapper<>();
+            sameFileQueryWrapper.eq("sha512",needDistinctFile.getSha512());
+            List<FileMetadata> sameFileMetadataList = fileMetadataMapper.selectList(sameFileQueryWrapper).stream()
                     .filter(fileMetadata -> fileMetadata.getFile().exists()
                             && !needDistinctFile.getFile().getAbsolutePath().equals(fileMetadata.getFile().getAbsolutePath()))
                     .toList();
