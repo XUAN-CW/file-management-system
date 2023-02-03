@@ -1,4 +1,5 @@
 saveTo=$(date "+%Y%m%d%H%M%S")
+mkdir $saveTo
 sqlite3 file-management-system.db .schema > $saveTo/file-management-system_schema.sql
 
 maximum_rows=50000
