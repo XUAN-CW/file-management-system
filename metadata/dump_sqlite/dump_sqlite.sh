@@ -1,4 +1,4 @@
-maximum_rows=100
+maximum_rows=10000
 
 for table_name in $(sqlite3 file-management-system.db ".tables"); do
    table_rows=$(sqlite3 file-management-system.db "SELECT count(*) FROM ${table_name};")
