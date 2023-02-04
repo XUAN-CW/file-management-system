@@ -59,6 +59,7 @@ public class FileMetadataUtils {
         try {
             return fileMetadata.copyHashFromFileMetadata(fileMetadata.readHashFromMetadataStore());
         }catch (Exception e){
+            e.printStackTrace();
             System.err.println(file.getAbsolutePath() + " fastHash 异常！触发 fullHash！");
             return fullHashing(file);
         }

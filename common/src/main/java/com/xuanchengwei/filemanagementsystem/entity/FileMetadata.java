@@ -32,7 +32,6 @@ public class FileMetadata implements Serializable {
     public FileMetadata(File file) throws IOException {
         this.file = file;
         this.absolutePath = file.getAbsolutePath();
-        this.metadataStore = new File(file.getAbsolutePath() + SUFFIX);
         this.fileName = file.getName();
         this.fileLength = file.length();
     }
@@ -80,6 +79,10 @@ public class FileMetadata implements Serializable {
         this.sha512 = fileMetadata.getSha512();
         this.everySegmentTakePieceSha512 = fileMetadata.getEverySegmentTakePieceSha512();
         return this;
+    }
+
+    public File getMetadataStore() {
+        return new File(file.getAbsolutePath() + SUFFIX);
     }
 
     public FileMetadata readHashFromMetadataStore() throws IOException {
