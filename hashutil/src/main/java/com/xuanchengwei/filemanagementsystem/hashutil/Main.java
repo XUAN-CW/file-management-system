@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        FileMetadataUtils.getFileList(new File("/hash/path")).stream().parallel().forEach(target -> {
+        FileMetadataUtils.getFileList(new File("R:\\jav")).stream().parallel().forEach(target -> {
             System.out.println(target.getAbsolutePath());
             try {
                 FileMetadataUtils.fastHashing(target);
