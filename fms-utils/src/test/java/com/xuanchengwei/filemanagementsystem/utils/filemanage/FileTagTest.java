@@ -34,6 +34,7 @@ public class FileTagTest {
                 fileTag.setSha512(fileTag.getSha512());
                 fileTag.setTag(tag);
                 fileTag.setSource(FileTagSourceEnum.manual.name());
+                fileTagMapper.insert(fileTag);
             }
         }
     }
