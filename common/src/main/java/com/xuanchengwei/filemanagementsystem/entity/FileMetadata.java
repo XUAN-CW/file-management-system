@@ -3,6 +3,7 @@ package com.xuanchengwei.filemanagementsystem.entity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -77,6 +78,10 @@ public class FileMetadata implements Serializable {
         this.sha512 = fileMetadata.getSha512();
         this.everySegmentTakePieceSha512 = fileMetadata.getEverySegmentTakePieceSha512();
         return this;
+    }
+
+    public FileMetadata readHashFromMetadataStore() throws IOException {
+        return new ObjectMapper().readValue(getMetadataStore(),FileMetadata.class);
     }
 
 }
