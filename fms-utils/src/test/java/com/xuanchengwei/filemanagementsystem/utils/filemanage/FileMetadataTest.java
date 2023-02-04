@@ -42,7 +42,7 @@ public class FileMetadataTest {
             }
         });
 
-//        fileMetadataList.forEach(fileMetadata -> fileMetadataMapper.insert(fileMetadata));
+        fileMetadataList.forEach(fileMetadata -> fileMetadataMapper.insert(fileMetadata));
 
     }
 
