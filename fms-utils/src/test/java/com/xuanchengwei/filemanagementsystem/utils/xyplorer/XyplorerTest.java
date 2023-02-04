@@ -46,7 +46,6 @@ public class XyplorerTest {
     @Test
     public void writeTest() throws IOException {
         readTest();
-        System.out.println(11);
         List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(new File("Z:\\迅雷下载2"));
         List<DataInfo> dataInfoList =  new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
