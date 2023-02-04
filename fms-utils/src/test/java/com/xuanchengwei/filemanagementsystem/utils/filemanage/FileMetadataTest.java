@@ -31,7 +31,7 @@ public class FileMetadataTest {
         List<FileMetadata> fileMetadataList = Collections.synchronizedList(new ArrayList<>(10000));
 
         List<File> fileList = FileMetadataUtils.getFileList(new File("Z:\\迅雷下载2"));
-        fileList.stream().forEach(target -> {
+        fileList.stream().parallel().forEach(target -> {
             System.out.println(target.getAbsolutePath());
             try {
                 FileMetadata fileMetadata =  FileMetadataUtils.fastHashing(target);
