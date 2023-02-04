@@ -46,7 +46,7 @@ public class XyplorerTest {
     @Test
     public void writeTest() throws IOException {
         readTest();
-        List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(new File(""));
+        List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(new File("Z:\\迅雷下载2\\迅雷下载2\\DTT059C"));
         List<DataInfo> dataInfoList =  new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
             FileGrade fileGrade = fileGradeMapper.selectById(fileMetadata.getSha512());
