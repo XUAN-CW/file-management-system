@@ -108,14 +108,7 @@ public class FileMetadataUtils {
         fileMetadata.setSha512(com.google.common.io.Files.asByteSource(file).hash(Hashing.sha512()).toString());
         fileMetadata.setEverySegmentTakePieceSha512(calculateEverySegmentTakePieceSha512(file));
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        if(fileMetadata.getMetadataStore().delete() || !fileMetadata.getMetadataStore().exists()){
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(fileMetadata.getMetadataStore(),fileMetadata);
-            fileMetadata.getMetadataStore().setReadOnly();
-            if(System.getProperty("os.name").toLowerCase().contains("windows")){
-                Files.setAttribute(fileMetadata.getMetadataStore().toPath(), "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
-            }
-        }
+        FileMetadata.saveToJson(fileMetadata);
         return fileMetadata;
     }
 }
