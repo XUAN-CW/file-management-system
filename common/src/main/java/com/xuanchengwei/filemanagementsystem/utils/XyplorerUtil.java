@@ -27,7 +27,7 @@ public class XyplorerUtil {
         this.tagDat = tagDat;
     }
 
-    private File tagDat;
+    private final File tagDat;
 
     public File getTagDat() {
         return tagDat;
