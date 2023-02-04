@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,8 @@ import java.util.List;
 @SpringBootTest
 public class XyplorerTest {
 
-    @Autowired
-    XyplorerUtil xyplorerUtil;
+
+    XyplorerUtil xyplorerUtil = new XyplorerUtil(new File("C:\\portable\\XYplorer_H\\Data\\tag.dat"));
 
 
     @Autowired
@@ -46,7 +47,7 @@ public class XyplorerTest {
     @Test
     public void writeTest() throws IOException {
         readTest();
-        List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(TargetDirUtils.getTargetDir());
+        List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(new File(""));
         List<DataInfo> dataInfoList =  new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
             FileGrade fileGrade = fileGradeMapper.selectById(fileMetadata.getSha512());
