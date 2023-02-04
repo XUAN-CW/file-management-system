@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2022-11-20 - 0:52
  */
 @SpringBootTest
-public class DistinctFileTest {
+public class FindDumpFile {
     @Autowired
     FileMetadataMapper fileMetadataMapper;
 
