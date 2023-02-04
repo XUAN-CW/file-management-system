@@ -58,7 +58,6 @@ public class FileMetadataUtils {
         FileMetadata fileMetadata = new FileMetadata(file);
         try {
             fileMetadata.copyHashFromFileMetadata(fileMetadata.readHashFromMetadataStore());
-//            fileMetadata.saveToDisk();
             return fileMetadata;
         }catch (Exception e){
             e.printStackTrace();
