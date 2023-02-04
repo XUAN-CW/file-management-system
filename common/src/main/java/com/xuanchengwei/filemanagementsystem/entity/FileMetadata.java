@@ -86,9 +86,7 @@ public class FileMetadata implements Serializable {
     }
 
     public FileMetadata readHashFromMetadataStore() throws IOException {
-        FileMetadata fileMetadata = new ObjectMapper().readValue(getMetadataStore(),FileMetadata.class);
-        saveToDisk(fileMetadata);
-        return fileMetadata;
+        return new ObjectMapper().readValue(getMetadataStore(),FileMetadata.class);
     }
 
     public static void saveToDisk(FileMetadata fileMetadata) throws IOException {
