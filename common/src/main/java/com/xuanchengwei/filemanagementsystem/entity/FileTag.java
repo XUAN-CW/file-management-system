@@ -22,6 +22,7 @@ public class FileTag implements Serializable {
 
     private String sha512;
     private String tag;
+    private String source;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
