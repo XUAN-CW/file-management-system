@@ -1,9 +1,8 @@
 #mybatis-plus.configuration.log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-spring.profiles.active: database,xyplorer
+spring.profiles.active: database
 server.port: 8081
 #server.address=127.0.0.1
-file-management-system:
-  targetDir: 'R:\3D'
+
 
 
 
