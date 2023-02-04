@@ -25,7 +25,7 @@ public class DeleteEmptyDirectories {
     }
 
     public static void main(String[] args) throws IOException {
-        File rootDirectory = new File("Y:\\qbit\\qbit_download");
+        File rootDirectory = new File("Z:\\迅雷下载2");
         deleteEmptyDirectories(rootDirectory);
     }
 }
