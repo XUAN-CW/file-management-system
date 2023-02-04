@@ -86,7 +86,7 @@ public class FileMetadata implements Serializable {
         return new ObjectMapper().readValue(getMetadataStore(),FileMetadata.class);
     }
 
-    public static void saveToJson(FileMetadata fileMetadata) throws IOException {
+    public static void saveToDisk(FileMetadata fileMetadata) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         if(fileMetadata.getMetadataStore().delete() || !fileMetadata.getMetadataStore().exists()){
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(fileMetadata.getMetadataStore(),fileMetadata);

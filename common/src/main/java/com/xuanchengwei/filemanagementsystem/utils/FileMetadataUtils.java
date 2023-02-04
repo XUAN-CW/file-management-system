@@ -1,6 +1,5 @@
 package com.xuanchengwei.filemanagementsystem.utils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.hash.Hashing;
 import com.xuanchengwei.filemanagementsystem.constants.BinaryConstants;
 import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
@@ -108,7 +107,7 @@ public class FileMetadataUtils {
         fileMetadata.setSha512(com.google.common.io.Files.asByteSource(file).hash(Hashing.sha512()).toString());
         fileMetadata.setEverySegmentTakePieceSha512(calculateEverySegmentTakePieceSha512(file));
 
-        FileMetadata.saveToJson(fileMetadata);
+        FileMetadata.saveToDisk(fileMetadata);
         return fileMetadata;
     }
 }
