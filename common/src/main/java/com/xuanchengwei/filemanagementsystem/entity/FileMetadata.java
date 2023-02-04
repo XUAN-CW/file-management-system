@@ -12,6 +12,8 @@ import lombok.Setter;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.time.LocalDateTime;
 
 /**
@@ -82,6 +84,17 @@ public class FileMetadata implements Serializable {
 
     public FileMetadata readHashFromMetadataStore() throws IOException {
         return new ObjectMapper().readValue(getMetadataStore(),FileMetadata.class);
+    }
+
+    public void saveToJson(FileMetadata fileMetadata) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        if(fileMetadata.getMetadataStore().delete() || !fileMetadata.getMetadataStore().exists()){
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(fileMetadata.getMetadataStore(),fileMetadata);
+            fileMetadata.getMetadataStore().setReadOnly();
+            if(System.getProperty("os.name").toLowerCase().contains("windows")){
+                Files.setAttribute(fileMetadata.getMetadataStore().toPath(), "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
+            }
+        }
     }
 
 }
