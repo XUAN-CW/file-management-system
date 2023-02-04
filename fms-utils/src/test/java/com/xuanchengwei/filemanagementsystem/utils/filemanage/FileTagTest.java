@@ -25,7 +25,7 @@ public class FileTagTest {
 
     @Test
     public void addTag() throws IOException {
-        String[] tagList = new String[]{"jav","test"};
+        String[] tagList = new String[]{"jav"};
 
         List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(new File("Z:\\迅雷下载2"));
         for (FileMetadata fileMetadata : fileMetadataList) {
