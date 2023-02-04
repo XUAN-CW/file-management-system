@@ -30,18 +30,16 @@ public class FileMetadataTest {
     public void fileMetadataUtil() throws IOException {
         List<FileMetadata> fileMetadataList = Collections.synchronizedList(new ArrayList<>(10000));
 
-        System.out.println(1);
         List<File> fileList = FileMetadataUtils.getFileList(new File("Z:\\迅雷下载2\\HEYZO_1934(1)"));
-
         fileList.stream().forEach(target -> {
             System.out.println(target.getAbsolutePath());
-            try {
-                FileMetadata fileMetadata =  FileMetadataUtils.fastHashing(target);
-//                fileMetadataList.add(fileMetadata);
-            } catch (IOException e) {
-                System.err.println(target.getAbsolutePath());
-                e.printStackTrace();
-            }
+//            try {
+//                FileMetadata fileMetadata =  FileMetadataUtils.fastHashing(target);
+////                fileMetadataList.add(fileMetadata);
+//            } catch (IOException e) {
+//                System.err.println(target.getAbsolutePath());
+//                e.printStackTrace();
+//            }
         });
 
 //        fileMetadataList.forEach(fileMetadata -> fileMetadataMapper.insert(fileMetadata));
