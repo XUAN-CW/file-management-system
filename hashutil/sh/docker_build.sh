@@ -1,9 +1,9 @@
 
-docker image rm hashutil:1.0
-docker build -t hashutil:1.0 .
+docker image rm hashutil:1.1
+docker build -t hashutil:1.1 .
 
 docker run --rm \
-  --name hashutil2 \
+  --name hashutil4 \
   -v /share/SINGLE2/8T:/hash/path \
-   hashutil:1.0
+   hashutil:1.1
 
