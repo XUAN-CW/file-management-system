@@ -28,11 +28,11 @@ public class FindDeletableFile {
 
     @Test
     public void findDeletableFile() throws IOException {
-        List<File> fileList = FileMetadataUtils.getFileList(new File("Z:\\迅雷下载2\\迅雷下载2"));
+        List<File> fileList = FileMetadataUtils.getFileList(new File("Z:\\迅雷下载2"));
         fileList.stream().parallel().forEach(file -> {
             try {
                 FileGrade fileGrade = fileGradeMapper.selectById(FileMetadataUtils.fastHashing(file).getSha512());
-                if(fileGrade != null && fileGrade.getGrade() == 1){
+                if(fileGrade != null && (fileGrade.getGrade() == 1 || fileGrade.getGrade() == 2)){
                     System.out.println(file.getAbsolutePath());
                 }
             } catch (IOException e) {
