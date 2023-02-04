@@ -32,7 +32,7 @@ public class FindDeletableFile {
         fileList.stream().parallel().forEach(file -> {
             try {
                 FileGrade fileGrade = fileGradeMapper.selectById(FileMetadataUtils.fastHashing(file).getSha512());
-                if(fileGrade.getGrade() == 1){
+                if(fileGrade != null && fileGrade.getGrade() == 1){
                     System.out.println(file.getAbsolutePath());
                 }
             } catch (IOException e) {
