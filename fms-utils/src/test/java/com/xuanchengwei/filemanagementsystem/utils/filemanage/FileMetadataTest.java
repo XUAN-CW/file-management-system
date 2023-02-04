@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +35,9 @@ public class FileMetadataTest {
             try {
                 FileMetadata fileMetadata =  FileMetadataUtils.fastHashing(target);
                 fileMetadataList.add(fileMetadata);
+                if(System.getProperty("os.name").toLowerCase().contains("windows")){
+                    Files.setAttribute(fileMetadata.getMetadataStore().toPath(), "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
+                }
             } catch (IOException e) {
                 System.err.println(target.getAbsolutePath());
                 e.printStackTrace();
