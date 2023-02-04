@@ -35,9 +35,6 @@ public class FileMetadataTest {
             try {
                 FileMetadata fileMetadata =  FileMetadataUtils.fastHashing(target);
                 fileMetadataList.add(fileMetadata);
-                if(System.getProperty("os.name").toLowerCase().contains("windows")){
-                    Files.setAttribute(fileMetadata.getMetadataStore().toPath(), "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
-                }
             } catch (IOException e) {
                 System.err.println(target.getAbsolutePath());
                 e.printStackTrace();
