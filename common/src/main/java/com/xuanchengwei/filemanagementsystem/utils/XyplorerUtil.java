@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @date 2023-01-07 - 10:45
  */
 public class XyplorerUtil {
-    
+
 
     public XyplorerUtil(File tagDat) {
         this.tagDat = tagDat;
