@@ -4,19 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
 import com.xuanchengwei.filemanagementsystem.mapper.FileMetadataMapper;
 import com.xuanchengwei.filemanagementsystem.utils.FileMetadataUtils;
-import com.xuanchengwei.filemanagementsystem.utils.TargetDirUtils;
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author 禤成伟
