@@ -31,7 +31,7 @@ public class FileMetadataTest {
         FileMetadataUtils.getFileList(new File("Z:\\迅雷下载2")).stream().parallel().forEach(target -> {
             System.out.println(target.getAbsolutePath());
             try {
-                FileMetadata fileMetadata =  FileMetadataUtils.safetyHashing(target);
+                FileMetadata fileMetadata =  FileMetadataUtils.fastHashing(target);
                 fileMetadataList.add(fileMetadata);
             } catch (IOException e) {
                 System.err.println(target.getAbsolutePath());
