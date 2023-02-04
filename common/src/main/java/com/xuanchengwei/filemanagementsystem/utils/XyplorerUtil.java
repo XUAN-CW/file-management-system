@@ -19,32 +19,18 @@ import java.util.stream.Collectors;
  * @author 禤成伟
  * @date 2023-01-07 - 10:45
  */
-@Component
-@Data
 public class XyplorerUtil {
 
-    @Value("${xyplorer.tag-dat}")
-    private String tagDatString;
+//    private String tagDatString;
 
-    @Value("${file-management-system.targetDir}")
-    private String targetDirString;
+    public XyplorerUtil(File tagDat) {
+        this.tagDat = tagDat;
+    }
 
     private File tagDat;
 
-    private File targetDir;
-
-    private File getTagDat() {
-        if(tagDat == null || !tagDat.getAbsolutePath().equals(tagDatString)){
-            tagDat = new File(tagDatString);
-        }
+    public File getTagDat() {
         return tagDat;
-    }
-
-    private File getTargetDir() {
-        if(targetDir == null || !targetDir.getAbsolutePath().equals(targetDirString)){
-            targetDir = new File(targetDirString);
-        }
-        return targetDir;
     }
 
     private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
