@@ -89,13 +89,13 @@ public class FileMetadata implements Serializable {
         return new ObjectMapper().readValue(getMetadataStore(),FileMetadata.class);
     }
 
-    public static void saveToDisk(FileMetadata fileMetadata) throws IOException {
+    public void saveToDisk() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        if(fileMetadata.getMetadataStore().delete() || !fileMetadata.getMetadataStore().exists()){
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(fileMetadata.getMetadataStore(),fileMetadata);
-            fileMetadata.getMetadataStore().setReadOnly();
+        if(this.getMetadataStore().delete() || !this.getMetadataStore().exists()){
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(this.getMetadataStore(),this);
+            this.getMetadataStore().setReadOnly();
             if(System.getProperty("os.name").toLowerCase().contains("windows")){
-                Files.setAttribute(fileMetadata.getMetadataStore().toPath(), "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
+                Files.setAttribute(this.getMetadataStore().toPath(), "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
             }
         }
     }

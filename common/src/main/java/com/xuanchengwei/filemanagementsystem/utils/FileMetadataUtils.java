@@ -58,7 +58,7 @@ public class FileMetadataUtils {
         FileMetadata fileMetadata = new FileMetadata(file);
         try {
             fileMetadata.copyHashFromFileMetadata(fileMetadata.readHashFromMetadataStore());
-            FileMetadata.saveToDisk(fileMetadata);
+            fileMetadata.saveToDisk();
             return fileMetadata;
         }catch (Exception e){
             e.printStackTrace();
@@ -112,7 +112,7 @@ public class FileMetadataUtils {
         fileMetadata.setSha512(com.google.common.io.Files.asByteSource(file).hash(Hashing.sha512()).toString());
         fileMetadata.setEverySegmentTakePieceSha512(calculateEverySegmentTakePieceSha512(file));
 
-        FileMetadata.saveToDisk(fileMetadata);
+        fileMetadata.saveToDisk();
         return fileMetadata;
     }
 }
