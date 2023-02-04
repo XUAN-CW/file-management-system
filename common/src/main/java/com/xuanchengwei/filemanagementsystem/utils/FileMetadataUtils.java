@@ -59,7 +59,7 @@ public class FileMetadataUtils {
         try {
             return fileMetadata.copyHashFromFileMetadata(fileMetadata.readHashFromMetadataStore());
         }catch (Exception e){
-            System.err.println("fastHash 失败！触发 fullHash！");
+            System.err.println("fastHash 异常！触发 fullHash！");
             return fullHashing(file);
         }
     }
@@ -94,6 +94,7 @@ public class FileMetadataUtils {
                 return fileMetadata;
             }
         }catch (Exception e){
+            System.err.println("safetyHash 异常！触发 fullHash！");
             return fullHashing(file);
         }
         return fullHashing(file);
