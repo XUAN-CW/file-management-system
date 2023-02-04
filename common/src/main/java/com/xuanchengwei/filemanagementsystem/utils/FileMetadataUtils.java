@@ -57,7 +57,9 @@ public class FileMetadataUtils {
     public static FileMetadata fastHashing(File file) throws IOException {
         FileMetadata fileMetadata = new FileMetadata(file);
         try {
-            return fileMetadata.copyHashFromFileMetadata(fileMetadata.readHashFromMetadataStore());
+            fileMetadata.copyHashFromFileMetadata(fileMetadata.readHashFromMetadataStore());
+            FileMetadata.saveToDisk(fileMetadata);
+            return fileMetadata;
         }catch (Exception e){
             e.printStackTrace();
             System.err.println(file.getAbsolutePath() + " fastHash 异常！触发 fullHash！");
