@@ -16,6 +16,8 @@ import java.util.List;
 public class MoveFile {
     static final String duplicateFileDir = "duplicate_file";
 
+    static final String deletableDir = "deletable_file";
+
     @Test
     public void moveDuplicateFile() throws IOException {
         File duplicateFileTxt = new File("metadata/duplicate_file.txt");
@@ -24,6 +26,19 @@ public class MoveFile {
         for (File file : duplicateFileList) {
             File duplicateFileMoveTo = new File(new StringBuffer(file.getAbsolutePath())
                     .insert(3,duplicateFileDir+File.separator).toString());
+            System.out.println(duplicateFileMoveTo);
+            FileUtils.moveFile(file,duplicateFileMoveTo);
+        }
+    }
+
+    @Test
+    public void moveDeletableFile() throws IOException {
+        File duplicateFileTxt = new File("metadata/deletable_file.txt");
+        List<File> duplicateFileList = Files.readLines(duplicateFileTxt, StandardCharsets.UTF_8)
+                .stream().map(File::new).filter(File::exists).toList();
+        for (File file : duplicateFileList) {
+            File duplicateFileMoveTo = new File(new StringBuffer(file.getAbsolutePath())
+                    .insert(3,deletableDir+File.separator).toString());
             System.out.println(duplicateFileMoveTo);
             FileUtils.moveFile(file,duplicateFileMoveTo);
         }
