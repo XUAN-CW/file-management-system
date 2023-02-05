@@ -33,7 +33,7 @@ public class FirefoxUtilsTest {
 
     @Test
     public void hashingDownloadFileIn1Day() throws IOException {
-        Long queryAfter = LocalDateTime.now().minusDays(1).atZone(DateConstants.DEFAULT_ZONE_ID).toInstant().toEpochMilli();
+        Long queryAfter = LocalDateTime.now().minusHours(1).atZone(DateConstants.DEFAULT_ZONE_ID).toInstant().toEpochMilli();
         for (FirefoxDownload firefoxDownload : firefoxDownloadMapper.selectDownloadCompleteBydateAdded(queryAfter)) {
             if(firefoxDownload.getFile().exists()){
                 FileMetadata fileMetadata = FileMetadataUtils.safetyHashing(firefoxDownload.getFile());
