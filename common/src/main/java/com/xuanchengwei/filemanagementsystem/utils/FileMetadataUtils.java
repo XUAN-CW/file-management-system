@@ -95,6 +95,7 @@ public class FileMetadataUtils {
     public static FileMetadata safetyHashing(File file) throws IOException {
         try {
             FileMetadata fileMetadata = new FileMetadata(file);
+
             fileMetadata.copyHashFromFileMetadata(fileMetadata.readHashFromMetadataStore());
             if(fileMetadata.getEverySegmentTakePieceSha512().equals(calculateEverySegmentTakePieceSha512(file))){
                 return fileMetadata;
