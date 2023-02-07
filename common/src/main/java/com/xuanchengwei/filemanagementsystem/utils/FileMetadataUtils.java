@@ -59,6 +59,7 @@ public class FileMetadataUtils {
         try {
             if(fileMetadata.getMetadataStore().exists()){
                 fileMetadata.copyHashFromFileMetadata(fileMetadata.readHashFromMetadataStore());
+                fileMetadata.saveToDisk();
                 return fileMetadata;
             }else {
                 return fullHashing(file);
