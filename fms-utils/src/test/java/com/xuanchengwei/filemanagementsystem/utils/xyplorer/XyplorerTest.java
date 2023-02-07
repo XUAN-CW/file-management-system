@@ -46,7 +46,7 @@ public class XyplorerTest {
     @Test
     public void writeTest() throws IOException {
         readTest();
-        List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(new File("Z:\\迅雷下载2"));
+        List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(new File("R:\\3D\\Nagoonimation_1BA6A97664F967167547BC835CEE2084B806E236\\3. Tifa and Corneo's Men"));
         List<DataInfo> dataInfoList =  new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
             System.out.println(fileMetadata.getAbsolutePath());
