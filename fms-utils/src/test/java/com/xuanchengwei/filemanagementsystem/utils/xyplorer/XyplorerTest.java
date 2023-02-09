@@ -47,7 +47,7 @@ public class XyplorerTest {
     public void writeTest() throws IOException {
         readTest();
         List<FileMetadata> fileMetadataList = FileMetadataUtils
-                .getFileMetadataList(new File("Y:\\\\迅雷已经完成"));
+                .getFileMetadataList(new File("Y:\\2T-2"));
         List<DataInfo> dataInfoList =  new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
             System.out.println(fileMetadata.getAbsolutePath());
