@@ -35,6 +35,7 @@ public class FileMetadataTest {
             System.out.println(target.getAbsolutePath());
             try {
                 FileMetadata fileMetadata =  FileMetadataUtils.fastHashing(target);
+                fileMetadata.saveToDisk();
                 fileMetadataList.add(fileMetadata);
             } catch (IOException e) {
                 System.err.println(target.getAbsolutePath());
