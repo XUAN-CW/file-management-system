@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -63,17 +61,23 @@ public class XyplorerUtil {
     }
 
     public void write(List<DataInfo> dataInfoList) throws IOException {
-        List<String> notDataStringList = Files.readLines(getTagDat(), Charsets.UTF_16).stream()
-                .filter(s -> !isData(s)).toList();
-        List<String> dataStringList = dataInfoList.stream().map(DataInfo::toXyplorerData).toList();
-
-        List<String> tagDatList = new ArrayList<>();
-        tagDatList.addAll(notDataStringList);
-        tagDatList.addAll(dataStringList);
-        Collections.sort(tagDatList.subList(notDataStringList.size(),tagDatList.size() - 1));
-
-        Files.asCharSink(getTagDat(),Charsets.UTF_16).writeLines(tagDatList);
-
+        // 处理不是 data 的部分
+        String[] notDataStringArray = new String[1024 * 1024];
+        int notDataStringIndex = 0;
+        for (String line : Files.readLines(getTagDat(), Charsets.UTF_16)) {
+            if(!isData(line)){
+                notDataStringArray[notDataStringIndex++] = line;
+            }
+        }
+        // 处理 data 的部分
+        String[] dataStringArray = dataInfoList.stream().map(DataInfo::toXyplorerData).toArray(String[]::new);
+        Arrays.sort(dataStringArray);
+        // 合并
+        String[] tagDatArray = new String[notDataStringIndex + dataStringArray.length];
+        System.arraycopy(notDataStringArray, 0, tagDatArray, 0, notDataStringIndex + 1);
+        System.arraycopy(dataStringArray, 0, tagDatArray, notDataStringIndex + 1, dataStringArray.length);
+        // 写入
+        Files.asCharSink(getTagDat(),Charsets.UTF_16).writeLines(Arrays.asList(tagDatArray));
     }
 
 
