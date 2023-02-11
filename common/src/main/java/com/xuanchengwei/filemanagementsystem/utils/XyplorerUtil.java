@@ -74,8 +74,8 @@ public class XyplorerUtil {
         Arrays.sort(dataStringArray);
         // 合并
         String[] tagDatArray = new String[notDataStringIndex + dataStringArray.length];
-        System.arraycopy(notDataStringArray, 0, tagDatArray, 0, notDataStringIndex + 1);
-        System.arraycopy(dataStringArray, 0, tagDatArray, notDataStringIndex + 1, dataStringArray.length);
+        System.arraycopy(notDataStringArray, 0, tagDatArray, 0, notDataStringIndex);
+        System.arraycopy(dataStringArray, 0, tagDatArray, notDataStringIndex, dataStringArray.length);
         // 写入
         Files.asCharSink(getTagDat(),Charsets.UTF_16).writeLines(Arrays.asList(tagDatArray));
     }
