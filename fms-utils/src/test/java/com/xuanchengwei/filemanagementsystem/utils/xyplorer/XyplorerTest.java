@@ -47,7 +47,7 @@ public class XyplorerTest {
     public void writeTest() throws IOException {
         readTest();
         List<FileMetadata> fileMetadataList = FileMetadataUtils
-                .getFileMetadataList(new File("R:\\筛选中\\2T-2\\115\\3D\\[3D同人步兵][ToonE]神仙品质同人动画全集[全CV][总计58GB]_sha1"));
+                .getFileMetadataList(new File("R:\\筛选中\\2T\\H\\迅雷下载"));
         List<DataInfo> dataInfoList =  new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
             System.out.println(fileMetadata.getAbsolutePath());
