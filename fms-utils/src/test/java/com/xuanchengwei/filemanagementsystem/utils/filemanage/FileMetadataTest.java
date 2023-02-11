@@ -30,7 +30,7 @@ public class FileMetadataTest {
     public void fileMetadataUtil() throws IOException {
         List<FileMetadata> fileMetadataList = Collections.synchronizedList(new ArrayList<>(10000));
 
-        List<File> fileList = FileMetadataUtils.getFileList(new File("R:\\筛选中\\2T"));
+        List<File> fileList = FileMetadataUtils.getFileList(new File("R:\\欧美\\Firtsbornunicorn\\Firtsbornunicorn"));
         fileList.stream().parallel().forEach(target -> {
             System.out.println(target.getAbsolutePath());
             try {
