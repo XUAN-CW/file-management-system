@@ -25,7 +25,7 @@ public class DeleteEmptyDirectories {
     }
 
     public static void main(String[] args) throws IOException {
-        File rootDirectory = new File("Z:\\迅雷下载2");
+        File rootDirectory = new File("R:\\筛选中\\2T\\H\\迅雷下载2");
         deleteEmptyDirectories(rootDirectory);
     }
 }
