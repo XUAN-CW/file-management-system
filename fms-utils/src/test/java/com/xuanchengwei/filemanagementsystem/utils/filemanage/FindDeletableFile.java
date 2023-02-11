@@ -28,7 +28,7 @@ public class FindDeletableFile {
 
     @Test
     public void findDeletableFile() throws IOException {
-        List<File> fileList = FileMetadataUtils.getFileList(new File("Z:\\迅雷下载2"));
+        List<File> fileList = FileMetadataUtils.getFileList(new File("R:\\筛选中\\2T\\H\\迅雷下载\\Blaire Ivory (Lena Anderson)"));
         fileList.stream().parallel().forEach(file -> {
             try {
                 FileGrade fileGrade = fileGradeMapper.selectById(FileMetadataUtils.fastHashing(file).getSha512());

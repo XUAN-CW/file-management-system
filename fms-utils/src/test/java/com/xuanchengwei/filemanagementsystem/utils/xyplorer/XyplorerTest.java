@@ -47,7 +47,7 @@ public class XyplorerTest {
     public void writeTest() throws IOException {
         readTest();
         List<FileMetadata> fileMetadataList = FileMetadataUtils
-                .getFileMetadataList(new File("R:\\欧美\\Firtsbornunicorn"));
+                .getFileMetadataList(new File("R:\\筛选中\\2T\\H\\迅雷下载\\Blaire Ivory (Lena Anderson)"));
         List<DataInfo> dataInfoList =  new ArrayList<>();
         for (FileMetadata fileMetadata : fileMetadataList) {
             System.out.println(fileMetadata.getAbsolutePath());
