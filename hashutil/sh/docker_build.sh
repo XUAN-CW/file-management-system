@@ -18,3 +18,11 @@ docker run --rm -d \
    hashutil:1.1
 
 
+docker run --rm -d \
+  --name hashutil_selecting \
+  -v /share/RAID1/筛选中:/hash/path \
+   hashutil:1.1
+
+
+
+
