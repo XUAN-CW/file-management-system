@@ -18,7 +18,7 @@ public class BtFileTidy {
 
     public static void main(String[] args) throws IOException {
         File btFileDir = new File("metadata/btFile");
-        File[] btFiles = btFileDir.listFiles(file -> file.getName().endsWith(".torrent"));
+        File[] btFiles = btFileDir.listFiles(file -> file.getName().toLowerCase().endsWith(".torrent"));
         for (File btFile : btFiles) {
             System.out.println(btFile.getAbsolutePath());
             MetadataService metadataService = new MetadataService();
