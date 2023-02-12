@@ -32,7 +32,7 @@ public class FindDeletableFile {
 
     @Test
     public void findDeletableFile() throws IOException {
-        List<File> fileList = FileMetadataUtils.getFileList(new File("R:\\筛选中\\2T\\H\\迅雷下载2"));
+        List<File> fileList = FileMetadataUtils.getFileList(new File("R:\\筛选中\\4T\\迅雷"));
         List<String> deletableFileList = new ArrayList<>(10000);
         fileList.stream().parallel().forEach(file -> {
             try {
