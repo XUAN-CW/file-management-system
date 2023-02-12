@@ -25,7 +25,7 @@ public class DeleteEmptyDirectories {
     }
 
     public static void main(String[] args) throws IOException {
-        File rootDirectory = new File("R:\\筛选中\\4T\\迅雷");
+        File rootDirectory = new File("R:\\筛选中\\4T");
         deleteEmptyDirectories(rootDirectory);
     }
 }
