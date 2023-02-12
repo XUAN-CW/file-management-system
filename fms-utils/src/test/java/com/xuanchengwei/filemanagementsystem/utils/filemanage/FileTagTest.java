@@ -27,7 +27,7 @@ public class FileTagTest {
     public void addTag() throws IOException {
         String[] tagList = new String[]{"不感兴趣","大家说好看"};
 
-        List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(new File("R:\\筛选中\\2T\\H\\迅雷下载\\Blaire Ivory (Lena Anderson)"));
+        List<FileMetadata> fileMetadataList = FileMetadataUtils.getFileMetadataList(new File("R:\\筛选中\\4T\\迅雷\\Lena.Anderson.aka.Blaire.Ivory.MegaPack.1080p-2880p"));
         for (FileMetadata fileMetadata : fileMetadataList) {
             for (String tag : tagList) {
                 FileTag fileTag = new FileTag();
