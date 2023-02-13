@@ -8,6 +8,7 @@ import lombok.Data;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @author 禤成伟
@@ -20,6 +21,11 @@ public class DataInfo {
     private Integer grade;
 
     private List<String> tagList;
+
+    private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
+    private boolean isData(String dataString){
+        return TAG_DATA_PATTERN.matcher(dataString).matches();
+    }
 
 
     public File getFile(){
