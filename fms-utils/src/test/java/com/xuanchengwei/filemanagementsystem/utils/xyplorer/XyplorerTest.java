@@ -31,7 +31,7 @@ public class XyplorerTest {
 
 
 
-    public void readTest() throws IOException {
+    public void readTagDat() throws IOException {
         List<DataInfo> dataInfoList = xyplorerUtil.read();
         for (DataInfo dataInfo : dataInfoList) {
             FileGrade fileGrade = dataInfo.getFileGrade();
@@ -45,7 +45,7 @@ public class XyplorerTest {
 
     @Test
     public void writeTest() throws IOException {
-        readTest();
+        readTagDat();
         List<FileMetadata> fileMetadataList = FileMetadataUtils
                 .getFileMetadataList(new File("R:\\筛选中\\4T"));
         List<DataInfo> dataInfoList =  new ArrayList<>();
