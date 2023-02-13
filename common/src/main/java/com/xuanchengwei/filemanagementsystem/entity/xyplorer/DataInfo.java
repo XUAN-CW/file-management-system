@@ -23,7 +23,7 @@ public class DataInfo {
     private List<String> tagList;
 
     private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
-    private boolean isData(String dataString){
+    private static boolean isData(String dataString){
         return TAG_DATA_PATTERN.matcher(dataString).matches();
     }
 
