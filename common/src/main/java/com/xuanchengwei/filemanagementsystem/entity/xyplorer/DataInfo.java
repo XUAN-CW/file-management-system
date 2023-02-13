@@ -30,8 +30,8 @@ public class DataInfo {
         this.dataRecord = dataRecord;
     }
 
-    private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
-    private static boolean isData(String dataString){
+    public static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
+    public static boolean isData(String dataString){
         return TAG_DATA_PATTERN.matcher(dataString).matches();
     }
 
