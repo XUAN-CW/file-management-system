@@ -4,6 +4,7 @@ import com.xuanchengwei.filemanagementsystem.entity.FileGrade;
 import com.xuanchengwei.filemanagementsystem.entity.FileMetadata;
 import com.xuanchengwei.filemanagementsystem.utils.FileMetadataUtils;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
  * @date 2023-01-07 - 10:55
  */
 @Data
+@NoArgsConstructor
 public class DataInfo {
 
     private String absolutePath;
@@ -22,10 +24,21 @@ public class DataInfo {
 
     private List<String> tagList;
 
+    private String dataRecord;
+
+    public DataInfo(String dataRecord) {
+        this.dataRecord = dataRecord;
+    }
+
     private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
     private static boolean isData(String dataString){
         return TAG_DATA_PATTERN.matcher(dataString).matches();
     }
+
+    private String[] getTagDatDetail(){
+        return  this.dataRecord.split("\\|");
+    }
+
 
 
     public File getFile(){
