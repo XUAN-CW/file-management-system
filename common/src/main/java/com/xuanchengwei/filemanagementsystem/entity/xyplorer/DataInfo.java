@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author 禤成伟
@@ -17,6 +18,8 @@ public class DataInfo {
 
     private String absolutePath;
     private Integer grade;
+
+    private List<String> tagList;
 
 
     public File getFile(){
