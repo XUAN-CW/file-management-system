@@ -36,7 +36,7 @@ public class DataInfo {
     }
 
     private String[] getTagDatDetail(){
-        return  this.dataRecord.split("\\|");
+        return this.dataRecord.split("\\|");
     }
 
 
