@@ -40,7 +40,6 @@ public class DataInfo {
         dataInfo.absolutePath = data[0];
         dataInfo.grade = Objects.equals(data[1], "") || data[1] == null ? null : Integer.valueOf(data[1]);
         dataInfo.tagList = Arrays.stream(data[2].split(",")).toList();
-
         return dataInfo;
     }
 
