@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -37,7 +38,7 @@ public class DataInfo {
         DataInfo dataInfo = new DataInfo();
         String[] data = dataRecord.split("\\|",Integer.MAX_VALUE);
         dataInfo.absolutePath = data[0];
-        dataInfo.grade = Integer.valueOf(data[1]);
+        dataInfo.grade = Objects.equals(data[1], "") || data[1] == null ? null : Integer.valueOf(data[1]);
         dataInfo.tagList = Arrays.stream(data[2].split(",")).toList();
 
         return dataInfo;
@@ -62,7 +63,7 @@ public class DataInfo {
     }
 
     public String toXyplorerData(){
-        return  getFile().getAbsolutePath() + "|"+ getGrade() +"|"+String.join(", ",tagList)+"|||||||||||||||||";
+        return  getFile().getAbsolutePath() + "|"+ (this.grade == null ? "" : this.grade) +"|"+String.join(", ",tagList)+"|||||||||||||||||";
     }
 
 }
