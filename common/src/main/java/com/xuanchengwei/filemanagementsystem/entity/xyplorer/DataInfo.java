@@ -63,7 +63,7 @@ public class DataInfo {
     }
 
     public String toXyplorerData(){
-        return  getFile().getAbsolutePath() + "|"+ (this.grade == null ? "" : this.grade) +"|"+String.join(", ",tagList)+"|||||||||||||||||";
+        return  getFile().getAbsolutePath() + "|"+ (this.grade == null ? "" : this.grade) +"|"+String.join(",",tagList)+"|||||||||||||||||";
     }
 
 }
