@@ -30,32 +30,10 @@ public class XyplorerUtil {
         return tagDat;
     }
 
-    private static final Pattern TAG_DATA_PATTERN = Pattern.compile("\\w:\\\\.*\\|\\d\\|(.*\\|){10}");
-
-    private boolean isData(String dataString){
-        return TAG_DATA_PATTERN.matcher(dataString).matches();
-    }
-
-    private DataInfo getDateInfoFromDataString(String dataString) throws IOException {
-        String[] data = dataString.split("\\|");
-        DataInfo dataInfo = new DataInfo();
-        dataInfo.setAbsolutePath(data[0]);
-        dataInfo.setGrade(Integer.parseInt(data[1]));
-        return dataInfo;
-    }
-
+    
     public List<DataInfo> read() throws IOException {
         List<String> dataStringList = Files.readLines(getTagDat(), Charsets.UTF_16);
-        return dataStringList.stream().parallel()
-                .filter(this::isData)
-                .map(dataString -> {
-                    try {
-                        return getDateInfoFromDataString(dataString);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                })
+        return dataStringList.stream().parallel().map(DataInfo::parseDataRecord)
                 .filter(dataInfo -> dataInfo != null && dataInfo.getFile().exists() && dataInfo.getFile().isFile())
                 .collect(Collectors.toList());
     }
@@ -65,7 +43,7 @@ public class XyplorerUtil {
         String[] notDataStringArray = new String[1024 * 1024];
         int notDataStringIndex = 0;
         for (String line : Files.readLines(getTagDat(), Charsets.UTF_16)) {
-            if(!isData(line)){
+            if(!DataInfo.isData(line)){
                 notDataStringArray[notDataStringIndex++] = line;
             }
         }
